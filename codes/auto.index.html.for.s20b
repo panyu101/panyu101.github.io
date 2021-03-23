@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# make index for Apache web folder
+#cd /var/www/html
+#F='/var/nginx/html/index.html'
+#tree -L 1 -I 'index.html|zz' -T 's20b.Apache' -H .|grep -B 999 'directories,'|sed 's|/">|/" target=_blank>|g' > $F
+
+# make index for Nginx web folder
+cd /var/nginx/html
+F='9584.html'
+tree -L 1 -I '*.html|*.php|*.ico|zz*' -T 's20b.Nginx' -H .|grep -B 999 'directories,'|sed 's|/">|/" target=_blank>|g' > $F
+echo "<br><br><pre>" >> $F
+cat /etc/nginx/nginx.conf|grep -v "\#\|="|grep location|sed 's|location ||g'|sed 's| {$|/|g' >> $F
+echo "</pre><br><br>Updated at $(date)" >> $F

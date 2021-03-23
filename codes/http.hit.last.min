@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# cat /var/log/httpd/access_log|grep -v localhost|grep -v 192.168.0|grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`"
+KEY='httphitlastmin'
+VALUE=$(cat /var/log/httpd/access_log|grep -v localhost|grep -v 192.168.0|grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`")
+curl -i -XPOST "http://127.0.0.1:8086/write?db=s20" --data-binary "connection $KEY=$VALUE"

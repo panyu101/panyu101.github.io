@@ -1,0 +1,5 @@
+#!/bin/bash
+
+KEY='sshuseron'
+VALUE=`who | wc -l`
+curl -i -XPOST "http://127.0.0.1:8086/write?db=s20" --data-binary "connection $KEY=$VALUE"

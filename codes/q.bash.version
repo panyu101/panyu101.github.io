@@ -1,0 +1,78 @@
+FOLDER=96
+
+# URL=https://www.nudecollect.com/content/MC-Nudes_Kami_-_Temptress_-_54x/image-1-pics-33-mirror-3.html;MIRROR=$(echo $URL|sed 's|\(.*\)-||'|sed 's|.html||');echo $MIRROR
+URL=$1
+M=$(echo $URL|sed 's|\(.*\)-||'|sed 's|.html||')
+M=$(expr $M)
+echo $M
+
+case $M in
+  [1-9])
+    B=${URL:(-23):1}
+    E=${URL:(-16):2}
+    URL1=${URL:0:(-29)}
+    ;;
+  [1-9][0-9])
+    B=${URL:(-24):1}
+    E=${URL:(-17):2}
+    URL1=${URL:0:(-30)}
+    ;;
+  *)
+    exit 2
+    ;;
+esac
+
+# https://www.nudecollect.com/content/FemJoy_FemJoycom_Cosmo_By_The_Pool_Jul_09_2020_67039915/image-1-pics-96-mirror-24.html
+
+LAST=$(ls -d /var/nginx/html/.ent/$FOLDER/*|tail -1)
+N=$(expr ${LAST:(-3):3} + 1)
+
+#URL=$1
+#B=${URL:(-23):1}
+#E=${URL:(-16):2}
+#URL1=${URL:0:(-29)}
+
+#echo $N,$B,$E,$URL1
+#exit
+
+case $N in
+  [1-9]) N=00$N ;;
+  [1-9][0-9]) N=0$N ;;
+  [1-9][0-9][0-9]) N=$N ;;
+  #[1-9][0-9][0-9][0-9]) N=$N ;;
+  *) exit 2 ;;
+esac
+###
+#read -p "$URL1, $N, $B, $E"
+#exit
+###
+
+mkdir -p ../$FOLDER/$N
+
+for i in $(eval echo {$B..$E})
+  do
+
+  if [ $i -lt 10 ]
+    then
+      i=0$i
+    else
+      i=$i
+  fi
+
+  # watch the mirror number as M !
+  # URL=$URL1\image-$i-pics-$E-mirror-26.html
+  URL=$URL1\image-$i-pics-$E-mirror-$M.html
+  wget --quiet -O $N.$i.tmp $URL
+  URL=$(cat $N.$i.tmp|grep 'img src="'|sed 's|.*img src="|https://www.nudecollect.com|1'|sed 's|"><.*||1')
+  if [ $(echo $URL|wc -c) -lt 999 ]
+    then
+    wget --quiet -O $N$i.jpg $URL
+  fi
+  rm -f $N.$i.tmp
+  # [ -s $N$i.jpg ] && echo . || rm -fv $N$i.jpg
+  [ $(stat --printf="%s" $N$i.jpg) -lt 999 ] && rm -fv $N$i.jpg || mv $N$i.jpg ../$FOLDER/$N/
+  # mv $N$i.jpg ../$FOLDER/$N/
+
+done
+
+echo -ne '\007'

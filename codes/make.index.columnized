@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]]
+  then
+  echo -e "./make.index.columnized\t\tCOLUMNS(25)\tFOLDER(.ent/97)"
+  exit 1
+fi
+
+FOLDER=$2
+
+WEB='/var/nginx/html/'
+LLL=$WEB$FOLDER/000.html
+
+N=1
+cd $WEB$FOLDER/
+
+cat << EOF > $LLL
+<html>
+<head><title>Index of /ap/$FOLDER/</title>
+<style>
+
+</style>
+</head>
+<body>
+<h1>Index of /ap/$FOLDER/</h1><hr>
+<a href="../">../</a></br>
+<pre>
+EOF
+
+# ls 001/*.jpg|wc -l
+
+for i in $(ls -d [0-9]??)
+  do
+    COUNT=$(ls $i/*.jpg|wc -l)
+    if [ ! `expr $N % $(expr $1 + 0)` -eq 0  ]
+      then
+        echo -e "<a href=$i/ target='_blank'>$i/<font color="green">$COUNT</font></a>\t"|tr -d "\n" >> $LLL
+      else
+        echo -e "<a href=$i/ target='_blank'>$i/<font color="green">$COUNT</font></a>\t" >> $LLL
+    fi
+  N=$[$N+1]
+done
+
+cat << EOF >> $LLL
+</pre>
+<hr></body>
+</html>
+EOF
+
+cd -

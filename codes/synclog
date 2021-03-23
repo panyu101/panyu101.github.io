@@ -1,0 +1,16 @@
+#!/bin/bash
+
+path="/var/nginx/html/log"
+timestamp=$(date +%Y-%m-%d)
+
+wget -O $path/temp 'https://www.dropbox.com/s/b7q8tprc716f9my/log4GMI.txt?dl=0'
+
+if [ $? -ne 0 ]
+   then
+        echo `date` sync failed >> $path/synclog.log
+   else
+        mv $path/log4GMI.txt $path/log4GMI.txt.$timestamp
+        mv $path/temp $path/log4GMI.txt
+        echo `date` synced ok >> $path/synclog.log
+        find $path -mtime +30 -type f -name 'log4GMI*' -exec rm -fr {} \;
+fi

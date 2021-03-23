@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]
+  then
+    echo -e "whois.with.this.ip\tPUBLIC_IP_Address"
+    exit 1
+fi
+
+# usage: whoiswithip 70.70.117.7
+# ref: https://ipstack.com/documentation
+IP=$1
+curl -s "http://api.ipstack.com/$IP?access_key=61a1670c6bfb8593e669bbfa3f28392c" | jq '.'

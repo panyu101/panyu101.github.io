@@ -1,0 +1,23 @@
+#!/bin/bash
+
+KEY1='SSHuseron'
+VALUE1=`who | wc -l`
+
+# grep -v 192.168. /var/log/secure|grep sshd|grep from|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`"
+KEY2='SSHfromlastmin'
+VALUE2=$(grep -v 192.168. /var/log/secure|grep sshd|grep from|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`")
+
+# grep sshd /var/log/secure|grep -v '192.168.'|grep Failed|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`"
+KEY3='SSHfailedlastmin'
+VALUE3=$(grep sshd /var/log/secure|grep -v '192.168.'|grep Failed|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`")
+
+# grep -v ^'192.168.0.' /var/log/nginx/access.log|grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`"
+KEY4='HTTPlastmin'
+#VALUE4=$(grep -v ^'192.168.0.' /var/log/nginx/access.log|grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`")
+VALUE4=$(grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`" /var/log/nginx/access.log)
+
+# ping -c3 www.google.com|tail -1|sed 's|.*mdev = ||1'|cut -d '/' -f 2
+KEY5='PINGGoogle_rtt.avg'
+VALUE5=$(ping -c3 www.google.com|tail -1|sed 's|.*mdev = ||1'|cut -d '/' -f 2)
+
+curl -i -XPOST "http://127.0.0.1:8086/write?db=s20" --data-binary "connection $KEY1=$VALUE1,$KEY2=$VALUE2,$KEY3=$VALUE3,$KEY4=$VALUE4,$KEY5=$VALUE5"

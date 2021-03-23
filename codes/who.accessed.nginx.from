@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for i in $(how.many.times.nginx.hit.from.outside|awk '{print $2}');do echo -e $i "\t"|tr -d "\n";whois.with.this.ip $i|jq .country_name;done

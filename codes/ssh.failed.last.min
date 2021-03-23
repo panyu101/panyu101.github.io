@@ -1,0 +1,5 @@
+#!/bin/bash
+
+KEY='sshfailedlastmin'
+VALUE=$(cat /var/log/secure|grep 'Failed password'|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`")
+curl -i -XPOST "http://127.0.0.1:8086/write?db=s20" --data-binary "connection $KEY=$VALUE"

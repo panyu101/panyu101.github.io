@@ -1,0 +1,2 @@
+for i in *;do cd $i;for FILE in $(ls -1 *.mp4);do ffmpeg -i $FILE -ss 00:00:08.000 -vframes 1 $FILE.jpg;done;cd -;done
+

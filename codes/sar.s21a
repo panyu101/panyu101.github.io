@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# sar -u 1 1|grep Average|awk '{print $NF}'
+# cpu_idle=$(sar -u 1 1|grep Average|awk '{print $NF}')
+
+LOAD=$(uptime|sed 's|.*load average:||1')
+CPU_IDLE=$(sar -u 1 1|grep Average|awk '{print $NF}')
+
+MEM_USED=$(sar -r 1 1|grep Average|awk '{print $5}')
+
+ROOT_UTIL=$(sar -d 1 1|grep -E 'Average.*sda'|awk '{print $NF}')
+
+#IF_UTIL_3=$(sar -n DEV 1 1|grep -E 'Average.*enp0s3'|awk '{print $NF}')
+#IF_UTIL_8=$(sar -n DEV 1 1|grep -E 'Average.*enp0s8'|awk '{print $NF}')
+
+RXPCK_3=$(sar -n DEV 1 1|grep -E 'Average.*enp0s3'|awk '{print $3}')
+TXPCK_3=$(sar -n DEV 1 1|grep -E 'Average.*enp0s3'|awk '{print $4}')
+RXPCK_8=$(sar -n DEV 1 1|grep -E 'Average.*enp0s8'|awk '{print $3}')
+TXPCK_8=$(sar -n DEV 1 1|grep -E 'Average.*enp0s8'|awk '{print $4}')
+
+
+curl -i -XPOST "http://localhost:8086/write?db=s21a" --data-binary "sar \
+load1=$(echo $LOAD|cut -d"," -f1|xargs),\
+load5=$(echo $LOAD|cut -d"," -f2|xargs),\
+load15=$(echo $LOAD|cut -d"," -f3|xargs),\
+cpu_idle=$CPU_IDLE,\
+mem_used=$MEM_USED,\
+root_util=$ROOT_UTIL,\
+rxpck_3=$RXPCK_3,\
+txpck_3=$TXPCK_3,\
+rxpck_8=$RXPCK_8,\
+txpck_8=$TXPCK_8\
+"
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+year=$(date +%Y)
+path="/var/www/html/wiki/data/pages/tech"
+
+if [ ! -f "$path/$year.txt" ]
+  then
+    mkdir "$path/$year"
+    echo "====== $year ======"
+    echo
+fi
+
+content="/root/text2wiki"
+title=`head -1 $content | sed 's/=//g' | sed 's/^ //g' | sed 's/ *$//g'`
+filename=`head -1 $content | sed 's/=//g' | sed 's/^ //g' | sed 's/ *$//g' | sed 's/ /_/g' | sed 's/(//g' | sed 's/)//g' | awk '{print tolower($0)}'`
+
+sed -i 3i"- [[.$year:$title]]" $path/$year.txt
+sed -i 's/^-/  -/' $path/$year.txt
+
+cp $content $path/$year/$filename.txt
+chown apache:apache $path/$year/$filename.txt
+
+echo > $content
+

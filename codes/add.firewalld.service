@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [[ $# -ne 3 ]]
+  then
+    echo -e "add.firewalld.service\tNAME\tPORT\tDESCRIPTION (protocol is TCP)"
+  exit 1
+fi
+
+NAME=$1
+PORT=$2
+DESCRIPTION=$3
+
+firewall-cmd --info-service $NAME
+
+read -p "Is this the service, $NAME ?"
+
+XMLFILE="/usr/lib/firewalld/services/$NAME.xml"
+echo $XMLFILE
+if [ -f "$XMLFILE" ]
+  then
+    echo "$XMLFILE does exist, nothing has been done."
+  else
+cat > temp << EOF
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>"$NAME"</short>
+  <description>"$DESCRIPTION"</description>
+  <port protocol="tcp" port="$PORT"/>
+</service>
+EOF
+
+  cat temp
+  read -p "Ready to add it to firewall service ?"
+  mv temp $XMLFILE
+  sleep 9
+  firewall-cmd --permanent --add-service=$NAME && firewall-cmd --reload && firewall-cmd --list-all
+
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]]
+  then
+    echo -e "qq\tCLI\tNOTE"
+    exit 1
+fi
+
+CLI=$1
+CLI=$(echo $CLI|sed 's|<|\&LT|g')
+NOTE=$2
+CLI2NOTE='/var/nginx/html/cli/index.html'
+echo '<z>'$NOTE'</z>' >> $CLI2NOTE
+echo -e $CLI"\n" >> $CLI2NOTE

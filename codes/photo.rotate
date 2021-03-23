@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ $# -ne 3 ]]
+  then
+    echo -e "$0\tYEAR(2017)\tFOLDER(10-Winnie.CC.in.Czech)\tPICTURE(2017-10-00_Winnie.CC.in.Czech.469.jpg)"
+    exit 1
+fi
+
+PHOTO='/var/nginx/html/photo'
+THUMB='/var/nginx/html/pub/photo/thumb'
+
+YEAR=$1
+FOLDER=$2
+PICTURE=$3
+
+if [ `ls -1 $PHOTO/$YEAR/$FOLDER/$PICTURE 2>/dev/null | wc -l` -gt 0 ]
+  then
+    file $PHOTO/$YEAR/$FOLDER/$PICTURE
+    read -p "Which way to rotate it ? (clockwise 90 | anticlockwise -90) : " ANGLE
+    echo
+    FILE=$PHOTO/$YEAR/$FOLDER/$PICTURE
+    echo "Rotating $PHOTO/$YEAR/$FOLDER/$PICTURE photo ..."
+    convert $FILE -rotate $ANGLE $FILE.tmp
+    mv -f $FILE.tmp $FILE
+    echo "Updating $THUMB/$YEAR/$FOLDER/$PICTURE thumbnail ..."
+    rm -f $THUMB/$YEAR/$FOLDER/$PICTURE
+    /root/bin/photo.thumb.update $YEAR $FOLDER
+  else
+    echo "$PHOTO/$YEAR/$FOLDER/$PICTURE DOESN'T EXIST"
+fi

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PING_RTT=$(ping -c3 www.google.com|tail -1|sed 's|.*mdev = ||1'|cut -d '/' -f 2)
+SSH_ON=$(ss -t|grep -c ssh)
+HTTP_HIT=$(grep '192.168' /var/log/nginx/access.log|grep -c "`date -d "1 min ago" '+%d/%h/%Y:%H:%M'`")
+
+curl -i -XPOST "http://localhost:8086/write?db=s21a" --data-binary "conn \
+ping_rtt=$PING_RTT,\
+ssh_on=$SSH_ON,\
+http_hit=$HTTP_HIT\
+"
