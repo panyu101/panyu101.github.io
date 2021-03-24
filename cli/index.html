@@ -6,7 +6,24 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>614_Command line to send email:
+<pre><qsuba>615_Use .htaccess to force HTTP to HTTPs and protect certain files:
+</qsuba><qsubb>###
+</qsubb># cat .htaccess
+
+# Enforce https regardless
+RewriteEngine On
+ RewriteCond %{HTTPS} off
+ RewriteCond %{HTTP:X-Forwarded-Proto} =http
+ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# do not display the content of purpose.json
+&lt;Files ~ &quot;purpose.json&quot;&gt;
+    Order deny,allow
+    Deny from all
+&lt;/Files&gt;
+<qsubb>###
+</qsubb>
+<qsuba>614_Command line to send email:
 </qsuba>SUBJECT='check.uptime.yml';SMTP='10.74.144.242';TO='alex.pan@kantar.com';ATTACHMENT='check.uptime.yml';mailx -v -s $SUBJECT -- smtp=smtp://$SMTP $TO &lt; $ATTACHMENT
 
 <qsuba>613_Linux add user and others:
