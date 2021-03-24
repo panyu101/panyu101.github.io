@@ -6,7 +6,14 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>616_bat - a cat clone with syntax highlighting and Git integration.
+<pre><qsuba>617_Sync date and time with time server (otherwise Grafana will not working properly):
+</qsuba><qsubb>###
+</qsubb>date
+ntpdate pool.ntp.org		# wait few seconds !
+date
+<qsubb>###
+</qsubb>
+<qsuba>616_bat - a cat clone with syntax highlighting and Git integration.
 </qsuba>pacman -Sy bat
 
 <qsuba>615_Use .htaccess to force HTTP to HTTPs and protect certain files:
