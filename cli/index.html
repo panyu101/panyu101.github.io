@@ -6,7 +6,18 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>612_After ANY changes made under /var/nginx/html/pub/panyu101.github.io :
+<pre><qsuba>613_Linux add user and others:
+</qsuba>set password as: ch@ngeMEs00n
+<qsubb>###
+</qsubb>#!/bin/bash
+read -p 'Enter the userid : ' USERID
+useradd -g GROUPID -d PATH_TO_HOME_DIRECTORY &quot;$USERID&quot;
+echo &quot;$USERID&quot;:ch@ngeMEs00n | chpasswd
+id &quot;$USERID&quot;
+cat /etc/passwd | grep &quot;$USERID&quot;
+<qsubb>###
+</qsubb>
+<qsuba>612_After ANY changes made under /var/nginx/html/pub/panyu101.github.io :
 </qsuba><qsubb>###
 </qsubb>FOLDER=XXXXXX;cd $FOLDER;tree -L 1 -I 'index.html' -T $FOLDER -H . | sed '/&lt;p class=&quot;VERSION&quot;&gt;/,+5d' &gt; index.html;cd -
 FOLDER=panyu101.github.io;tree -L 1 -I 'index*|zz*|pdq*|*php' -T $FOLDER -H . | sed '/&lt;p class=&quot;VERSION&quot;&gt;/,+5d' &gt; pdq.html
