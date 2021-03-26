@@ -6,7 +6,33 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>622_implement Apache mod_qos, initial setup:
+<pre><qsuba>623_Configure Apache mod_qos, basic protection:
+</qsuba>To limit the number of simultaneously inbound connections from a single IP. This will automatically prevent an user from creating more than x 
+requests (specified at QS_SrvMaxConnPerIP) at the same time from the same device/network.
+This is not a problem at all when there are more than x request at the same server from real persons as long as their connection isn't working
+in the same way the Slowloris attack does, so if your application has access from more users than the specified at this property, they will be
+able to access it as long as it's not a Slow HTTP request. Wonderful, isn't !?
+<qsubb>###
+</qsubb>nano -w /etc/httpd/conf.d/qos.conf
+
+&lt;IfModule qos_module&gt;
+   # handle connections from up to 100000 different IPs
+   QS_ClientEntries 99999
+   # allow only 50 connections per IP
+   QS_SrvMaxConnPerIP 99
+   # limit maximum number of active TCP connections limited to 256
+   MaxClients 256
+   # disables keep-alive when 180 (70%) TCP connections are occupied
+   QS_SrvMaxConnClose 180
+   # minimum request/response speed
+   # (deny slow clients blocking the server, keeping connections open without requesting anything
+   QS_SrvMinDataRate 150 1200
+&lt;/IfModule&gt;
+
+systemctl reload httpd.service
+<qsubb>###
+</qsubb>
+<qsuba>622_implement Apache mod_qos, initial setup:
 </qsuba><qsubb>###
 </qsubb>mkdir -p /opt/mod_qos;cd $_
 wget -O mod_qos-11.66.tar.gz 'https://www.dropbox.com/s/wy8vq08rxsrtcay/mod_qos-11.66.tar.gz?dl=0'
