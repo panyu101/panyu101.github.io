@@ -6,7 +6,9 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>623_Configure Apache mod_qos, basic protection:
+<pre><qsuba>624_check if a module is installed with Apache:			 apachectl -M | grep qos
+</qsuba>
+<qsuba>623_Configure Apache mod_qos, basic protection:
 </qsuba>To limit the number of simultaneously inbound connections from a single IP. This will automatically prevent an user from creating more than x 
 requests (specified at QS_SrvMaxConnPerIP) at the same time from the same device/network.
 This is not a problem at all when there are more than x request at the same server from real persons as long as their connection isn't working
