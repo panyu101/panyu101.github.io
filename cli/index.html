@@ -6,7 +6,40 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>621_AWS Linux extra package check:				which amazon-linux-extras; amazon-linux-extras | grep php
+<pre><qsuba>622_implement Apache mod_qos, initial setup:
+</qsuba><qsubb>###
+</qsubb>mkdir -p /opt/mod_qos;cd $_
+wget -O mod_qos-11.66.tar.gz 'https://www.dropbox.com/s/wy8vq08rxsrtcay/mod_qos-11.66.tar.gz?dl=0'
+yum install httpd-devel
+tar xvzf mod_qos-11.66.tar.gz
+cd mod_qos-11.66/apache2
+apxs -i -c mod_qos.c -lcrypto -lpcre				# dependency: yum install pcre-devel openssl-devel
+cd ../..
+ll /usr/lib64/httpd/modules/mod_qos.so				# target module installed
+cd mod_qos-11.66/tools
+./configure
+make								# dependency: yum install automake libpng-devel
+
+nano -w /etc/httpd/conf/httpd.conf				# enable the mod_qos
+#99+
+LoadModule qos_module modules/mod_qos.so
+
+nano -w /etc/httpd/conf/virt/lsrint.conf			# add qos web viewer at one of virtual host
+... ...
+        #99+
+        &lt;IfModule mod_qos.c&gt;
+          &lt;Location /ox0/qos&gt;
+            SetHandler qos-viewer
+          &lt;/Location&gt;
+        &lt;/IfModule&gt;
+&lt;/VirtualHost&gt;
+
+systemctl restart httpd.service
+
+; Now you should see something here:				https://kpws01.com/ox0/qos
+<qsubb>###
+</qsubb>
+<qsuba>621_AWS Linux extra package check:				which amazon-linux-extras; amazon-linux-extras | grep php
 </qsuba>
 <qsuba>620_capture client IP addresses in the web server logs behind an ELB:
 </qsuba><qsubb>###
