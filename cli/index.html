@@ -113,7 +113,8 @@ systemctl restart httpd.service
 </qsuba>
 <qsuba>620_capture client IP addresses in the web server logs behind an ELB:
 </qsuba><qsubb>###
-</qsubb><hr></hr>nano -w /etc/httpd/conf/httpd.conf
+</qsubb>A. Use %{X-Forwarded-For}i in LogFormat of httpd.conf		# ONLY added source IP in the log file
+nano -w /etc/httpd/conf/httpd.conf
 ; making these two lines like:
     ... ...
     LogFormat &quot;%{X-Forwarded-For}i %h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot;&quot; combined
@@ -122,7 +123,8 @@ systemctl restart httpd.service
 
 systemctl reload httpd.service
 
-<hr></hr>nano -w /etc/httpd/conf/httpd.conf
+B. Use Apache mod_remoteip					# source IP as %{REMOTE_ADDR} is available for all Apache
+nano -w /etc/httpd/conf/httpd.conf
 ; add this line
 RemoteIPHeader X-Forwarded-For
 <qsubb>###
