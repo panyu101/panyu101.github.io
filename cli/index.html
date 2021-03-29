@@ -6,7 +6,97 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>625_This took me more than FIVE hours to figure out:		How to ALLOW or DENY certain IPs to visit specific pages for virtual host
+<pre><qsuba>631_Apache setup SSL with self-certified certificate:
+</qsuba><qsubb>###
+</qsubb>apachectl -V
+apachectl -M | grep mod_ssl
+yum install mod_ssl
+
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/pki/tls/private/apache-selfsigned.key -out /etc/pki/tls/certs/apache-selfsigned.crt
+
+nn /etc/httpd/conf.d/ssl.conf					# make changes like these:
+#99-1 SSLCertificateFile /etc/pki/tls/certs/localhost.crt
+#99+1
+SSLCertificateFile /etc/pki/tls/certs/apache-selfsigned.crt
+
+--
+#99-1 SSLCertificateKeyFile /etc/pki/tls/private/localhost.key
+#99+1
+SSLCertificateKeyFile /etc/pki/tls/private/apache-selfsigned.key
+
+cat /etc/httpd/conf.d/kpadm01.conf				# sample configuration for site: kpadm01
+								# need to add IP kpadm01 pair to hosts file of client
+&lt;VirtualHost *:80&gt;
+    ServerName kpadm01
+    ServerAlias kpadm01
+    Redirect / https://kpadm01
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:443&gt;
+    ServerName kpadm01
+    ServerAlias kpadm01
+    DocumentRoot /var/www/ssl-test
+    SSLEngine on
+    SSLCertificateFile /etc/pki/tls/certs/apache-selfsigned.crt
+    SSLCertificateKeyFile /etc/pki/tls/private/apache-selfsigned.key
+&lt;/VirtualHost&gt;
+
+apachectl configtest
+systemctl reload httpd						# Now, visit http://kpadm01 will be redirect to https://kpadm01 automatically
+<qsubb>###
+</qsubb>
+<qsuba>630_Windows adhoc hosts file location:				C:\Windows\System32\drivers\etc\hosts
+</qsuba>
+<qsuba>629_check and test mail via relayhost, in this case, eo2mx01.prod.kt.lcl, on AWS Linux:
+</qsuba><qsubb>###
+</qsubb>ps aux|grep -v grep|grep postfix				# make sure postfix is up and running
+rpm -qa|grep mailx						# make sure mailx is installed, otherwise:   yum install mailx
+
+nn /etc/postfix/main.cf
+; add this line:
+relayhost = [eo2mx01.prod.kt.lcl]
+
+systemctl reload postfix.service
+
+SUBJECT='Test email from kpadm01.prod.kt.lcl';SMTP='eo2mx01.prod.kt.lcl';TO='alex.pan@kantar.com';ATTACHMENT='.tcshrc';mailx -v -s $SUBJECT -- smtp=smtp://$SMTP $TO &lt; $ATTACHMENT
+tail /var/log/maillog						# should see something:
+Mar 29 20:59:32 ip-10-74-156-89 postfix/qmgr[21997]: C62E8CA7AB: from=&lt;root@kpadm01.prod.kt.lcl&gt;, size=700, nrcpt=6 (queue active)
+Mar 29 20:59:32 ip-10-74-156-89 postfix/smtp[22107]: C62E8CA7AB: to=&lt;alex.pan@kantar.com&gt;, relay=eo2mx01.prod.kt.lcl[10.74.144.242]:25, delay=1120, delays=1120/0.01/0.01/0, dsn=2.0.0, status=sent (250 2.0.0 Ok: queued as 0C05FCA7E0)
+Mar 29 20:59:32 ip-10-74-156-89 postfix/qmgr[21997]: C62E8CA7AB: removed
+
+ssh eo2mx01 'cat /var/log/maillog | grep alex.pan'		# should see something:
+Mar 29 20:57:54 eo2mx01 postfix/smtp[17780]: E043ECA7E0: to=&lt;alex.pan@kantar.com&gt;, relay=mxb-00174f01.gslb.pphosted.com[67.231.156.205]:25, delay=1.8, delays=0.01/0/1.1/0.68, dsn=2.0.0, status=sent (250 2.0.0 37htvjrgda-1 Message accepted for delivery)
+<qsubb>###
+</qsubb>
+<qsuba>628_setup relay host for postfix:
+</qsuba><qsubb>###
+</qsubb>grep relayhost /etc/postfix/main.cf
+
+# The relayhost parameter specifies the default host to send mail to
+# no relayhost is given, mail is routed directly to the destination.
+relayhost = [eo2mx01.prod.kt.lcl]
+<qsubb>###
+</qsubb>
+<qsuba>627_upgrade php on AWS Linux:
+</qsuba><qsubb>###
+</qsubb>amazon-linux-extras | grep php					# check what versions are available for php
+amazon-linux-extras enable php7.4
+php --version
+yum clean metadata
+yum install php-cli php-pdo php-fpm php-json php-mysqlnd
+php --version
+<qsubb>###
+</qsubb>
+<qsuba>626_php info test page:
+</qsuba><qsubb>###
+</qsubb>&lt;?php
+echo $_SERVER[&quot;REMOTE_ADDR&quot;];
+echo &quot;\n&quot;;
+echo phpinfo();
+?&gt;
+<qsubb>###
+</qsubb>
+<qsuba>625_This took me more than FIVE hours to figure out:		How to ALLOW or DENY certain IPs to visit specific pages for virtual host
 </qsuba><qsubb>###
 </qsubb>#nano -w /etc/httpd/conf/virt/lsrint.conf
 &lt;VirtualHost *:80&gt;
