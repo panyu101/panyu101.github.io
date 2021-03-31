@@ -6,13 +6,255 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>631_Apache setup SSL with self-certified certificate:
+<pre><qsuba>640_setup at client host for Nagios active check:
+</qsuba><qsubb>###
+</qsubb>at Nagios server:
+HOST=kpws01;ssh $HOST 'yum install -y nrpe'
+HOST=kpws01;rsync -avz /etc/nagios/nrpe.cfg $HOST:/etc/nagios/
+HOST=kpws01;rsync -avz /etc/nagios/send_nsca.cfg $HOST:/etc/nagios/
+HOST=kpws01;rsync -avz /usr/lib64/nagios/plugins $HOST:/usr/lib64/nagios/
+HOST=kpws01;ssh $HOST 'systemctl enable --now nrpe'
+; test it
+HOST=kpws01;/usr/lib64/nagios/plugins/check_nrpe -H $HOST -c check_load
+<qsubb>###
+</qsubb>
+<qsuba>639_usage of dsh:
+</qsuba><qsubb>###
+</qsubb>export WCOLL=&quot;/home/apan/dsh/hosts&quot;				# hosts file has list of hosts
+dsh -t sh uptime
+
+alias dsh='dsh -t sh '						# make an alias to save typing &quot;dsh -t sh &quot;
+<qsubb>###
+</qsubb>
+<qsuba>638_install dsh (distributed shell,yadsh):
+</qsuba><qsubb>###
+</qsubb>cd /opt/
+mkdir dsh;cd $_
+wget -O dsh-1.21.tar.gz 'https://www.dropbox.com/s/e0vbpiidgqb0x3a/dsh-1.21.tar.gz?dl=0'
+tar xvzf dsh-1.21.tar.gz
+cd dsh-1.21/
+./configure
+make
+make install
+cd
+dsh -h
+<qsubb>###
+</qsubb>
+<qsuba>637_configure service for Nagios:				# add service with hostgroup_name saved the trouble to add service to each host.
+</qsuba><qsubb>###
+</qsubb>nn /etc/nagios/service/MEM.cfg					# this line should be in nagios.cfg ALREADY
+								# cfg_dir=/etc/nagios/service
+define service {
+  use                   generic-service
+  hostgroup_name        windows-servers
+  service_description   MEM
+  check_command         check_MEM
+  servicegroups         MEM
+}
+
+nn /etc/nagios/servicegroup/MEM.cfg                             # this line should be in nagios.cfg ALREADY
+                                                                # cfg_dir=/etc/nagios/servicegroup
+define servicegroup{
+  servicegroup_name     MEM
+}
+
+nn /etc/nagios/command/check_MEM.cfg		                # this line should be in nagios.cfg ALREADY
+                                                                # cfg_dir=/etc/nagios/command
+define command{
+  command_name  check_MEM
+  command_line  $USER1$/check_nrpe -H $HOSTADDRESS$ -c alias_mem
+}
+<qsubb>###
+</qsubb>
+<qsuba>636_configure host for Nagios:
+</qsuba><qsubb>###
+</qsubb>nn /etc/nagios/host/EO2SDWWEB03.cfg				# this line should be in nagios.cfg ALREADY
+                                                                # cfg_dir=/etc/nagios/host
+define host {
+  use           windows-server
+  host_name     EO2SDWWEB03
+  alias         EO2SDWWEB03
+  address       EO2SDWWEB03.prod.kt.lcl
+}
+
+host_template: windows-server should be defined ALREADY
+something like this:
+
+define host {
+
+    name                            windows-server          ; The name of this host template
+    use                             generic-host            ; Inherit default values from the generic-host template
+    check_period                    24x7                    ; By default, Windows servers are monitored round the clock
+    check_interval                  5                       ; Actively check the server every 5 minutes
+    retry_interval                  1                       ; Schedule host check retries at 1 minute intervals
+    max_check_attempts              10                      ; Check each server 10 times (max)
+    check_command                   check-host-alive        ; Default command to check if servers are &quot;alive&quot;
+    notification_period             24x7                    ; Send notification out at any time - day or night
+    notification_interval           30                      ; Resend notifications every 30 minutes
+    notification_options            d,r                     ; Only send notifications for specific host states
+    contact_groups                  admins                  ; Notifications get sent to the admins by default
+    hostgroups                      windows-servers         ; Host groups that Windows servers should be a member of
+    register                        0                       ; DON'T REGISTER THIS - ITS JUST A TEMPLATE
+}
+
+AND hostgroups is definded AREADY like this:
+
+define hostgroup {
+  hostgroup_name        windows-servers         ; The name of the hostgroup
+  alias                 Windows Servers         ; Long name of the group
+}
+<qsubb>###
+</qsubb>
+<qsuba>635_setup pnp4nagios pop-up chart:
+</qsuba><qsubb>###
+</qsubb>nn /usr/share/nagios/html/ssi/status-header.ssi			# if file does NOT exist, just create it.
+
+&lt;script src=&quot;/pnp4nagios/media/js/jquery-min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/pnp4nagios/media/js/jquery.cluetip.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+jQuery.noConflict();
+jQuery(document).ready(function() {
+  jQuery('a.tips').cluetip({ajaxCache: false, dropShadow: false,showTitle: false });
+});
+&lt;/script&gt;
+
+AND make sure the pop-up settings are deployed in template file.
+<qsubb>###
+</qsubb>
+<qsuba>634_setup pnp4nagios:
+</qsuba><qsubb>###
+</qsubb>yum install -y pnp4nagios php php-gd rrdtool perl-rrdtool perl-Time-HiRes		# PHP 5.4.16 is tested, higher version causes issue
+nn /etc/nagios/nagios.cfg								# adding the whole block between --- and ---
+---											# copied from /etc/pnp4nagios/nagios.cfg
+#99-1 process_performance_data=0
+#99+
+process_performance_data=1
+
+# *** the template definition differs from the one in the original nagios.cfg
+#
+service_perfdata_file=/var/log/pnp4nagios/service-perfdata
+service_perfdata_file_template=DATATYPE::SERVICEPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tSERVICEDESC::$SERVICEDESC$\tSERVICEPERFDATA::$SERVICE$
+service_perfdata_file_mode=a
+service_perfdata_file_processing_interval=15
+service_perfdata_file_processing_command=process-service-perfdata-file
+
+# *** the template definition differs from the one in the original nagios.cfg
+#
+host_perfdata_file=/var/log/pnp4nagios/host-perfdata
+host_perfdata_file_template=DATATYPE::HOSTPERFDATA\tTIMET::$TIMET$\tHOSTNAME::$HOSTNAME$\tHOSTPERFDATA::$HOSTPERFDATA$\tHOSTCHECKCOMMAND::$HOSTCHECKC$
+host_perfdata_file_mode=a
+host_perfdata_file_processing_interval=15
+host_perfdata_file_processing_command=process-host-perfdata-file
+#99
+---
+
+nn /etc/nagios/objects/commands.cfg				# adding the whole block between --- and ---
+---
+#99-
+#define command {
+#
+#    command_name    process-host-perfdata
+#    command_line    /usr/bin/printf &quot;%b&quot; &quot;$LASTHOSTCHECK$\t$HOSTNAME$\t$HOSTSTATE$\t$HOSTATTEMPT$\t$HOSTSTATETYPE$\t$HOSTEXECUTIONTIME$\t$HOSTOUTPUT$\t$HOSTPERFDATA$\n&quot; &gt;&gt; /var/log/nagios/host-perfdata.out
+#}
+#
+#define command {
+#
+#    command_name    process-service-perfdata
+#    command_line    /usr/bin/printf &quot;%b&quot; &quot;$LASTSERVICECHECK$\t$HOSTNAME$\t$SERVICEDESC$\t$SERVICESTATE$\t$SERVICEATTEMPT$\t$SERVICESTATETYPE$\t$SERVICEEXECUTIONTIME$\t$SERVICELATENCY$\t$SERVICEOUTPUT$\t$SERVICEPERFDATA$\n&quot; &gt;&gt; /var/log/nagios/service-perfdata.out
+#}
+#99
+
+#99+
+#
+# Bulk with NPCD mode
+#
+define command {
+       command_name    process-service-perfdata-file
+       command_line    /bin/mv /var/log/pnp4nagios/service-perfdata /var/spool/pnp4nagios/service-perfdata.$TIMET$
+}
+
+define command {
+       command_name    process-host-perfdata-file
+       command_line    /bin/mv /var/log/pnp4nagios/host-perfdata /var/spool/pnp4nagios/host-perfdata.$TIMET$
+}
+#99
+---
+
+nn /etc/nagios/objects/templates.cfg				# adding the whole block between --- and ---
+---
+#99+
+define host {
+   name       host-pnp
+   action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=_HOST_
+   # OR this, for pop-up chart: 
+   #action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=_HOST_' class='tips' rel='/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;srv=_HOST_
+   register   0
+}
+
+define service {
+   name       service-pnp
+   action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=$SERVICEDESC$
+   # OR this, for pop-up chart:
+   action_url /pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=$SERVICEDESC$' class='tips' rel='/pnp4nagios/index.php/popup?host=$HOSTNAME$&amp;srv=$SERVICEDESC$
+   register   0
+}
+#99
+---
+AND make use of these two templates by adding one line at existing generic-host and generic-sercice
+---
+define host {
+
+    name                            generic-host            ; The name of this host template
+    use                             host-pnp                ;99+ to use pnp4nagios template
+---
+define service {
+
+    name                            generic-service         ; The 'name' of this service template
+    use                             service-pnp             ;99+ to use pnp4nagios template
+---
+
+nagios -v /etc/nagios/nagios.cfg
+systemctl reload nagios.service
+<qsubb>###
+</qsubb>
+
+<qsuba>633_setup mail for Nagios:
+</qsuba><qsubb>###
+</qsubb>; make sure the server postfix has been setup and running
+cd /etc/nagios/
+grep -Rn 'nagios@localhost' *								# check how many places using nagios@localhost
+sed -i 's|nagios@localhost|alex.pan@kantar.com|g' {nagios.cfg,objects/contacts.cfg}
+grep -Rn 'alex.pan@kantar.com' *							# verify after replacement
+sed -i 's|pagealex.pan@kantar.com|alex.pan@kantar.com|g' nagios.cfg			# verify ALL have been replaced
+nagios -v /etc/nagios/nagios.cfg							# verify configure files
+systemctl reload nagios.service
+<qsubb>###
+</qsubb>
+<qsuba>632_Install Nagios core on AWS Linux:
+</qsuba><qsubb>###
+</qsubb>amazon-linux-extras | grep epel
+amazon-linux-extras enable epel
+yum clean metadata
+yum install epel-release
+yum install nagios
+systemctl enable --now nagios
+
+https://100.21.44.215/nagios/
+nagiosadmin / nagiosadmin
+
+cd /etc/nagios/							# change default password, change of username will cause some problem!
+cp passwd passwd.000
+htpasswd -b /etc/nagios/passwd nagiosadmin it4gmi777
+<qsubb>###
+</qsubb>
+<qsuba>631_Apache setup SSL with self-certified certificate:
 </qsuba><qsubb>###
 </qsubb>apachectl -V
 apachectl -M | grep mod_ssl
 yum install mod_ssl
 
 openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/pki/tls/private/apache-selfsigned.key -out /etc/pki/tls/certs/apache-selfsigned.crt
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/pki/tls/private/apache-selfsigned.key -out /etc/pki/tls/certs/apache-selfsigned.crt -subj &quot;/C=US/ST=WA/L=Seattle/O=Kantar/OU=Profiles/CN=kpadm01&quot;
 
 nn /etc/httpd/conf.d/ssl.conf					# make changes like these:
 #99-1 SSLCertificateFile /etc/pki/tls/certs/localhost.crt
