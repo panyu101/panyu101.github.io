@@ -6,7 +6,57 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>640_setup at client host for Nagios active check:
+<pre><qsuba>641_make customized check for Nagios, sample:
+</qsuba><qsubb>###
+</qsubb>01. nn /usr/lib64/nagios/plugins/is_FALCON_SENSOR
+#!/bin/bash
+
+PROC=falcon-sensor
+
+if [ `ps aux|grep -v grep|grep $PROC|wc -l` == 1  ]
+  then
+    echo &quot;OK - $PROC is up&quot;
+    exit 0
+  else
+    echo &quot;CRITICAL - $PROC is NOT up&quot;
+    exit 2
+fi
+
+02. nn /etc/nagios/nrpe.cfg
+#99+
+command[is_falcon_sensor]=/usr/lib64/nagios/plugins/is_FALCON_SENSOR
+#99
+
+03. nn /etc/nagios/service/is_falcon_sensor.cfg
+define service {
+  use                   generic-service
+  hostgroup_name        linux-servers
+  service_description   falcon_sensor
+  check_command         is_falcon_sensor
+  servicegroups         falcon_sensor
+}
+
+04. nn /etc/nagios/service/is_falcon_sensor.cfg
+define service {
+  use                   generic-service
+  hostgroup_name        linux-servers
+  service_description   falcon_sensor
+  check_command         is_falcon_sensor
+  servicegroups         falcon_sensor
+}
+[root@kpadm01 nagios]# cat /etc/nagios/servicegroup/falcon_sensor.cfg
+define servicegroup{
+  servicegroup_name     falcon_sensor
+}
+
+05. nn /etc/nagios/command/is_falcon_sensor.cfg
+define command{
+  command_name  is_falcon_sensor
+  command_line  $USER1$/check_nrpe -H $HOSTADDRESS$ -c is_falcon_sensor
+} 
+<qsubb>###
+</qsubb>
+<qsuba>640_setup at client host for Nagios active check:
 </qsuba><qsubb>###
 </qsubb>at Nagios server:
 HOST=kpws01;ssh $HOST 'yum install -y nrpe'
