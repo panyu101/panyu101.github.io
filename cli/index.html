@@ -6,7 +6,25 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>641_make customized check for Nagios, sample:
+<pre><qsuba>642_add page(s) for pnp4nagios:
+</qsuba><qsubb>###
+</qsubb>If you like to consolidate pnp4nagios's graph, you may add page(s)
+So, if you visit https://100.21.44.215/pnp4nagios/page
+you will see page(s) listed under &quot;Pages&quot;
+
+nn /etc/pnp4nagios/pages/eo2atl-load.cfg
+define page {
+  use_regex     1                       # 0 = use no regular expressions, 1 = use regular expressions
+  page_name     eo2atl-load             # page description
+}
+
+define graph {
+  host_name     eo2atl??
+  service_desc  load
+}
+<qsubb>###
+</qsubb>
+<qsuba>641_make customized check for Nagios, sample:
 </qsuba><qsubb>###
 </qsubb>01. nn /usr/lib64/nagios/plugins/is_FALCON_SENSOR
 #!/bin/bash
