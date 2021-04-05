@@ -6,7 +6,22 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>648_configure Nagvis map rotation pool:
+<pre><qsuba>649_ignore files OR directoris when commit/push to Github:
+</qsuba><qsubb>###
+</qsubb>cd TARGET_DIR
+rm -rf .git*							# if git initialized before and to start over again
+git init
+nn .gitignore							# add simple line, like var/, means to ignore directory var/
+								# or something like:  * \ !this_one, means to ignore ALL but not this_one
+git add -A;git commit -m &quot;$(date)&quot;;git branch -M main;git remote add origin git@github.com:panyu101/nagvis.kpadm01.git
+git push -u origin main
+
+For ANY change made under TARGET_DIR
+git add -A;git commit -m &quot;$(date)&quot;
+git push -u origin main
+<qsubb>###
+</qsubb>
+<qsuba>648_configure Nagvis map rotation pool:
 </qsuba><qsubb>###
 </qsubb>nn /etc/nagvis/etc/nagvis.ini.php
 
