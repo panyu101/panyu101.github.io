@@ -6,7 +6,38 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>643_advanced sample for page of pnp4nagios:
+<pre><qsuba>645_install and configure Nagvis to map Nagios better:
+</qsuba><qsubb>###
+</qsubb>cd /opt/							# dependents:   yum install graphviz
+wget -O nagvis-1.9.tar.gz 'https://www.dropbox.com/s/12eq7tudbw13lvu/nagvis-1.9.tar.gz?dl=0'
+tar xvzf nagvis-1.9.tar.gz
+cd nagvis-1.9
+./install.sh
+---
+Valid socket formats are: tcp:127.0.0.1:7668 or unix:/path/to/live
+Please enter your MKLivestatus socket: unix:/var/spool/nagios/cmd/live
+---
+systemctl reload nagios.service
+<qsubb>###
+</qsubb>
+<qsuba>644_make Nagios has live status ready for other program, such Nagvis
+</qsuba><qsubb>###
+</qsubb>copy or download this file to location:
+/etc/nagios/mk-livestatus/livestatus.o
+
+nn /etc/nagios/nagios.cfg
+
+#99+1
+broker_module=/etc/nagios/mk-livestatus/livestatus.o /var/spool/nagios/cmd/live
+#99
+
+systemctl reload nagios.service
+
+Then the live status of Nagios should be available here:
+/var/spool/nagios/cmd/live
+<qsubb>###
+</qsubb>
+<qsuba>643_advanced sample for page of pnp4nagios:
 </qsuba><qsubb>###
 </qsubb>nn /etc/pnp4nagios/pages/URL-response.cfg
 
