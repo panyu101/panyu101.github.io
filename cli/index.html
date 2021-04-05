@@ -6,7 +6,52 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>645_install and configure Nagvis to map Nagios better:
+<pre><qsuba>648_configure Nagvis map rotation pool:
+</qsuba><qsubb>###
+</qsubb>nn /etc/nagvis/etc/nagvis.ini.php
+
+---
+;99-1 maps=&quot;demo-germany,demo-ham-racks,demo-load,demo-muc-srv1,demo-geomap,demo-automap&quot;
+;99+1
+maps=&quot;KantarProfiles,demo-worldmap&quot;
+;99
+---
+<qsubb>###
+</qsubb>
+<qsuba>647_configure customized maps:					# the same as 646, but done without WebGUI configure
+</qsuba><qsubb>###
+</qsubb>nn /etc/nagvis/etc/maps/KantarProfiles.cfg
+
+---
+define global {
+sources=automap
+object_id=0
+
+#99+
+label_maxlen=23
+url_target=_blank
+width=2048
+height=1024
+root=&lt;&lt;&lt;monitoring&gt;&gt;&gt;
+backend_id=live_1
+#99
+}
+---
+<qsubb>###
+</qsubb>
+<qsuba>646_use Nagvis's auto-generated map with real time update of all status of Nagios:
+</qsuba><qsubb>###
+</qsubb>https://100.21.44.215/nagvis
+admin / admin
+Options / Manage Maps
+Create Map:
+ID (Internal Name):	KantarProfiles
+Map Type:		Automap based on parent/child relations
+Create
+Then, you should see auto-generated map with real time update of all status of Nagios.
+<qsubb>###
+</qsubb>
+<qsuba>645_install and configure Nagvis to map Nagios better:
 </qsuba><qsubb>###
 </qsubb>cd /opt/							# dependents:   yum install graphviz
 wget -O nagvis-1.9.tar.gz 'https://www.dropbox.com/s/12eq7tudbw13lvu/nagvis-1.9.tar.gz?dl=0'
