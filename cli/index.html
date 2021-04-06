@@ -6,7 +6,82 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>649_ignore files OR directoris when commit/push to Github:
+<pre><qsuba>655_php session files clean up:
+</qsuba><qsubb>###
+</qsubb>default session files location:
+/tmp/systemd-private-c45041af218a47c1a610945da3ff89ca-php-fpm.service-WGj3NQ/tmp/
+clean up:
+rm -fv /tmp/systemd-private-c45041af218a47c1a610945da3ff89ca-php-fpm.service-WGj3NQ/tmp/*
+<qsubb>###
+</qsubb>
+<qsuba>654_nano super easy and powerful shortcut:
+</qsuba><qsubb>###
+</qsubb>Ctrl+r		File to insert [from ./]: FILE_NAME
+Ctrl+rx		Command to execute: BASH_COMMAND
+
+either way, the content/result of FILE_NAME or BASH_COMMAND output will be insert into the current position of nano
+<qsubb>###
+</qsubb>
+<qsuba>653_make Dokuwiki open external link in new tab:
+</qsuba><qsubb>###
+</qsubb>Edit file: /var/www/html/wiki/conf/dokuwiki.php
+---
+Modify the line from:
+  $conf['target']['extern']    = '';
+  
+to:
+  $conf['target']['extern']    = '_blank';
+---
+<qsubb>###
+</qsubb>
+<qsuba>652_bash script return for Nagios check:			# ONLY the status, NO perfdata in this example
+</qsuba><qsubb>###
+</qsubb>case $EXIT in
+  0)
+    echo &quot;OK - $METRIC_NAME (${MINUTES} min $STATISTICS): $METRIC$UNIT&quot;
+    exit $EXIT
+    ;;
+  1)
+    echo &quot;WARNING - $METRIC_NAME (${MINUTES} min $STATISTICS): $METRIC$UNIT&quot;
+    exit $EXIT
+    ;;
+  2)
+    echo &quot;CRITICAL - $METRIC_NAME (${MINUTES} min $STATISTICS): $METRIC$UNIT&quot;
+    exit $EXIT
+    ;;
+  *)
+    echo &quot;UNKNOWN - $METRIC_NAME (${MINUTES} min $STATISTICS): $METRIC$UNIT&quot;
+    exit 3
+    ;;
+esac
+<qsubb>###
+</qsubb>
+<qsuba>651_bash command line option parse:				# command -p $ARG1$ -n $ARG2$ -i $ARG3$
+</qsuba><qsubb>###
+</qsubb>while getopts &quot;p:n:i:&quot; opt; do
+  case &quot;$opt&quot; in
+    p)
+      PROFILE=$OPTARG
+      ;;
+    n)
+      NAMESPACE=&quot;AWS/$OPTARG&quot;
+      ;;
+    i)
+      INSTANCE=$OPTARG
+      if [[ $NAMESPACE =~ &quot;RDS&quot; ]]; then
+        DIMENSIONS=&quot;Name=DBInstanceIdentifier,Value=$OPTARG&quot;
+      fi
+      if [[ $NAMESPACE =~ &quot;ElastiCache&quot; ]]; then
+        DIMENSIONS=&quot;Name=CacheClusterId,Value=$OPTARG&quot;
+      fi
+      ;;
+  esac
+done
+<qsubb>###
+</qsubb>
+<qsuba>650_bash set default for a variable:				echo $REGION;[[ ! $REGION ]] &amp;&amp; REGION=&quot;us-west-2&quot;;echo $REGION
+</qsuba>
+<qsuba>649_ignore files OR directoris when commit/push to Github:
 </qsuba><qsubb>###
 </qsubb>cd TARGET_DIR
 rm -rf .git*							# if git initialized before and to start over again
