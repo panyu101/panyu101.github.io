@@ -1,6 +1,0 @@
-#!/bin/bash
-
-KEY='sshattemptedlastmin'
-VALUE=$(cat /var/log/secure|grep 'Connection from'|grep -v 'Connection from 192.168.0.'|grep -c "`date -d "1 min ago" '+%h %_d %H:%M'`")
-curl -i -XPOST "http://127.0.0.1:8086/write?db=s20" --data-binary "connection $KEY=$VALUE"
-

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd /root/aws.s3/alex.eboy.work
-export AWS_PROFILE=ratox;aws s3 sync . s3://alex.eboy.work/ --delete
-cd -
-

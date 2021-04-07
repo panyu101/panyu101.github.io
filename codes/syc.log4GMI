@@ -1,6 +1,0 @@
-#!/bin/bash
-
-BACKUP=`date +%Y-%m-%d`
-mv -f /root/log/log4GMI.txt /root/log/log4GMI.txt.$BACKUP
-wget -O /root/log/log4GMI.txt 'https://www.dropbox.com/s/b7q8tprc716f9my/log4GMI.txt?dl=0'
-ls -ltrh /root/log/
