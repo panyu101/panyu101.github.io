@@ -6,7 +6,27 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>655_php session files clean up:
+<pre><qsuba>656_install and configure Apprise on Nagios server:		# NOT very useful !
+</qsuba><qsubb>###
+</qsubb>; install and setup
+python --version
+yum install python2-pip
+pip install apprise
+mkdir -p /etc/nagios/conf.d
+touch /etc/nagios/conf.d/dummy.cfg
+nn /etc/nagios/conf.d/apprise.cfg				# content see: https://github.com/panyu101/nagios.kpadm01/blob/main/conf.d/apprise.cfg
+nn /etc/nagios/objects/contacts.cfg
+nagios -v /etc/nagios/nagios.cfg
+systemctl reload nagios.service
+
+; configurate
+nn /etc/nagios/apprise.yml					# content see: https://github.com/panyu101/nagios.kpadm01/blob/main/apprise.yml
+
+; test it
+apprise -c /etc/nagios/apprise.yml -n failure -g PROBLEM -vvv -t &quot;A Test Title&quot; -b &quot;a Test Body&quot;
+<qsubb>###
+</qsubb>
+<qsuba>655_php session files clean up:
 </qsuba><qsubb>###
 </qsubb>default session files location:
 /tmp/systemd-private-c45041af218a47c1a610945da3ff89ca-php-fpm.service-WGj3NQ/tmp/
