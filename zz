@@ -1,0 +1,19 @@
+site:			https://panyu101.github.io/
+user:			panyu101
+ssh public key:		panyu101.rsa.pub
+ssh private key:	/root/key/panyu101.rsa
+registered email:	daqin_pan@yahoo.com / panyu101@gmail.com - but this one is used in command line, and it works
+
+eval "$(ssh-agent -s)"
+ssh-add /root/key/panyu101.rsa
+ssh -T git@github.com
+
+; ONLY for the first time of commit
+git config --global user.email panyu101@gmail.com
+git init;git add -A;git commit -m "$(date)";git branch -M main;git remote add origin git@github.com:panyu101/panyu101.github.io.git
+or OTHER repositories:
+git init;git add -A;git commit -m "$(date)";git branch -M main;git remote add origin git@github.com:panyu101/XXXXXXXXX.git
+
+; normal commit and push
+git add -A;git commit -m "$(date)"
+git push -u origin main
