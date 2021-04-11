@@ -6,7 +6,28 @@
   <title>CLI</title>
 </head>
 <body>
-<pre>
+<pre><qsuba>659_very basic config for /etc/zabbix/zabbix_agentd.conf
+</qsuba><qsubb>###
+</qsubb>PidFile=/var/run/zabbix/zabbix_agentd.pid
+LogFile=/var/log/zabbix/zabbix_agentd.log
+LogFileSize=0
+Server=10.74.156.46
+ServerActive=10.74.156.46
+Include=/etc/zabbix/zabbix_agentd.d/*.conf
+<qsubb>###
+</qsubb>
+<qsuba>658_running mysql in safe mode, NO authentication at all:	mysqld_safe --skip-grant-tables &amp;
+</qsuba>
+<qsuba>657_installl mysql on Amazon Linux:
+</qsuba><qsubb>###
+</qsubb>ps aux | grep mysql
+yum -y install mariadb-server
+systemctl enable --now mariadb
+ps aux | grep mysql
+
+mysql
+<qsubb>###
+</qsubb>
 <qsuba>656_install and configure Apprise on Nagios server:		# NOT very useful !
 </qsuba><qsubb>###
 </qsubb>; install and setup
