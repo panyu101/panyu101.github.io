@@ -6,7 +6,31 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>659_very basic config for /etc/zabbix/zabbix_agentd.conf
+<pre><qsuba>661_neat way to pass config to main.py:
+</qsuba><qsubb>###
+</qsubb>; make a cfg/server.py looks like:
+
+url     = &quot;http://10.74.156.122/zabbix/api_jsonrpc.php&quot;
+user    = &quot;Admin&quot;
+passwd  = &quot;zabbix&quot;
+
+; then you can import it to main.py, and refer these variables as:
+url = zbx.url
+user = zbx.user
+passwd = zbx.passwd
+; etc.
+<qsubb>###
+</qsubb>
+<qsuba>660_Python import XXX.py from other place than main.py located:
+</qsuba><qsubb>###
+</qsubb>; say you have config file located at cfg/server.py, then you have to do:
+
+import sys
+sys.path.insert(1, './cfg')
+import server as zbx
+<qsubb>###
+</qsubb>
+<qsuba>659_very basic config for /etc/zabbix/zabbix_agentd.conf
 </qsuba><qsubb>###
 </qsubb>PidFile=/var/run/zabbix/zabbix_agentd.pid
 LogFile=/var/log/zabbix/zabbix_agentd.log
