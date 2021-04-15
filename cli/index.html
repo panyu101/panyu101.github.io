@@ -6,7 +6,14 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>661_neat way to pass config to main.py:
+<pre><qsuba>663_bash sort file employee by year, month, day of onboard:	sort -t ',' -nr -k4 -k5 -k6 employees
+</qsuba>
+<qsuba>662_bash process list of record in mutiple-lines:
+</qsuba><qsubb>###
+</qsubb>while read first;read second;read third;do echo $first, $second, $third;done &lt; list.three.lines.per.record
+<qsubb>###
+</qsubb>
+<qsuba>661_neat way to pass config to main.py:
 </qsuba><qsubb>###
 </qsubb>; make a cfg/server.py looks like:
 
