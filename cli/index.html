@@ -6,7 +6,7 @@
   <title>CLI</title>
 </head>
 <body>
-<pre><qsuba>661_panyu101.github.io static website
+<pre><qsuba>665_panyu101.github.io static website
 </qsuba><qsubb>###
 </qsubb>FOLDER=panyu101.github.io;tree -L 1 -I 'index*|zz*|pdq*|*php' -T $FOLDER -H . | sed '/&lt;p class=&quot;VERSION&quot;&gt;/,+5d' &gt; pdq.html
 eval &quot;$(ssh-agent -s)&quot;
@@ -17,7 +17,7 @@ git config --global user.email &quot;panyu101@outlook.com&quot;
 git push -u origin main
 <qsubb>###
 </qsubb>
-<qsuba>662_sync current directory to AWS S3 static website
+<qsuba>664_sync current directory to AWS S3 static website
 </qsuba><qsubb>###
 </qsubb>F=$(basename $(pwd));export AWS_PROFILE=ratox;aws s3 sync . s3://alex.eboy.work/audio/$F --delete --exclude zz --region us-west-2
 <qsubb>###
