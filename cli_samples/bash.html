@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Bash - AP&#x27;s Readings</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">AP&#x27;s Readings</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/panyu101/panyu101.github.io" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>One line command to deploy changes to SLS(Serverless) stack</p>
+<pre><code class="language-bash">sls s3sync &amp;&amp; sls invoke -f setup
+</code></pre>
+<p>Open port 80 for IP 11.12.13.14 with iptables</p>
+<pre><code class="language-bash">iptables -I INPUT -p tcp -s 11.12.13.14 --dport 80 -j ACCEPT
+
+Saved in iptable is
+-A INPUT -s 11.12.13.14/32 -p tcp -m tcp --dport 80 -j ACCEPT
+</code></pre>
+<p>Sample of search string and do something or NOT do something, if or while sample</p>
+<pre><code class="language-bash">if [ `tail -99 picked.list|grep "ent" &gt; /dev/null;echo $?` = 0 ];then echo 'Found';else echo 'Nope';fi
+
+while [ `tail -99 picked.list|grep "ent" &gt; /dev/null;echo $?` = 0 ];do SOMETHING;done
+</code></pre>
+<p>Change USER_ID with PASSWORD, one line command</p>
+<pre><code class="language-bash">USER_ID=USERID; PASSWORD=PASSWD; echo "$USER_ID:$PASSWORD"|chpasswd
+</code></pre>
+<p>Generate 12 characters long random password</p>
+<pre><code class="language-bash">openssl rand -base64 12
+</code></pre>
+<p>Pick one FILE randomly from many files with path D0s/D1s/FILEs</p>
+<pre><code class="language-bash">D0=$(ls|shuf -n1);D1=$(ls $D0/|shuf -n1);FILE=$(ls $D0/$D1/*.jpg|shuf -n1);echo $FILE
+</code></pre>
+<p>Display ALL possible color (256) for current console</p>
+<pre><code class="language-bash">for i in {1..255};do echo -en "\e[38;5;${i}m";echo -n "$i ";done;echo
+</code></pre>
+<p>Usage of cat here file, it will add ANYTHING afterwords into FILE_NAME till a line with EOF only</p>
+<pre><code class="language-bash">cat &gt; FILE_NAME &lt;&lt; EOF
+... ...
+EOF
+</code></pre>
+<p>Create index.html file at current directory for HTTP access</p>
+<pre><code class="language-bash">tree -L 1 -I '.html|.php|.ico|zz' -T 'MyTitle' -H .|grep -B 999 'directories,'|sed 's|/"&gt;|/" target=_blank&gt;|g' &gt; index.html
+</code></pre>
+<p>Query openweathermap.org with API key (PVG and YVR)</p>
+<pre><code class="language-bash">curl -s "https://api.openweathermap.org/data/2.5/onecall?lat=31.22&amp;lon=121.46&amp;exclude=minutely,hourly,daily&amp;units=metric&amp;appid=MY_OPEN_WEATHER_MAP_API_KEY"|jq
+LOC="lat=49.25&amp;lon=-123.12"; curl -s "https://api.openweathermap.org/data/2.5/onecall?$LOC&amp;exclude=minutely,hourly,daily&amp;units=metric&amp;appid=$APPID"|jq
+</code></pre>
+<p>Convert date to Unix time, and convert it back</p>
+<pre><code class="language-bash">date +"%s"
+date -d @1738544871
+</code></pre>
+<p>Search JSON file with specific name(s) and value(s)</p>
+<pre><code class="language-bash">COUNTRY=$1;CITY=$2; jq -r ".[] | select(.country == \"$COUNTRY\" and .name == \"$CITY\")".coord city.list.json
+</code></pre>
+<p>Remove files that were modified 30 days ago at the current directory</p>
+<pre><code class="language-bash">find . -mtime +30 -type f -exec rm -rf {} \;
+</code></pre>
+<p>Write data to SDCard, useage of dd</p>
+<pre><code class="language-bash">dd if=&lt;image&gt; of=/dev/sdx bs=4M iflag=direct,fullblock oflag=direct status=progress
+</code></pre>
+<p>Display SSL expiration date for a domain</p>
+<pre><code class="language-bash">DNS=google.com;echo | openssl s_client -servername $DNS -connect $DNS:443 2&gt;/dev/null | openssl x509 -noout -enddate
+</code></pre>
+<p>Kill all Zombie processes one-liner</p>
+<pre><code class="language-bash">ps axo state,ppid | awk '!/PPID/$1~"Z"{print $2}' | xargs -r kill -9
+</code></pre>
+<p>Generate one random IPv4 address</p>
+<pre><code class="language-bash">for i in a b c d; do echo -n $(($RANDOM % 256)).; done | sed -e "s/\.$//g"; echo
+</code></pre>
+<p>rsync from remote to local</p>
+<pre><code class="language-bash">rsync -chavzP --stats user@remote.host:/path/to/copy /path/to/local/storage
+</code></pre>
+<p>rsync from remote to local with non-standard ssh port</p>
+<pre><code class="language-bash">rsync -avz -e "ssh -p $portNumber" user@remote.host:/path/to/copy /local/path
+</code></pre>
+<p>My BASH template for any script with argument(s)</p>
+<pre><code class="language-bash">#!/bin/bash
+
+if [[ $# -ne 2 ]]
+  then
+    echo -e "$0\n\tAAA_NAME ( sampleA )\n\tBBB_NAME ( sampleB )"
+cat &lt;&lt; EOF_USAGE
+This script is to do WHATEVER ...
+EOF_USAGE
+    exit 1
+fi
+</code></pre>
+<p>My .bashrc/.profile favorite</p>
+<pre><code class="language-bash"># 99+
+export PS1="\[\e[31m\][\[\e[m\]\[\e[38;5;172m\]\u\[\e[m\]@\[\e[38;5;153m\]\h\[\e[m\] \[\e[38;5;214m\]\w\[\e[m\]\[\e[31m\]]\[\e[m\]\\$ "
+# w - for current working directory, absolute FULL path from / (root)
+alias rm='rm -fv' ll='ls -al ' gg='grep --color ' hh='history 33' nn='nano -w '
+
+export LS_COLORS=${LS_COLORS}:'zz=04;31'
+export EDITOR=nano
+#eval "$(direnv hook bash)"
+# 99+.
+</code></pre>
+<p>Rename all files in current directory</p>
+<pre><code class="language-bash">N=10;for i in $(ls);do N=$(( N += 1 ));echo $i $N;done	# dry-run
+N=10;for i in $(ls);do N=$(( N += 1 ));mv $i $N;done
+</code></pre>
+<p>Write image to USB drive, sample of using dd</p>
+<pre><code class="language-bash">dd if=&lt;image&gt; of=/dev/sdx bs=4M iflag=direct,fullblock oflag=direct status=progress
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../cli_samples/windows.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../cli_samples/aws.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../cli_samples/windows.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../cli_samples/aws.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
