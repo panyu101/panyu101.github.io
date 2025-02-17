@@ -1,9 +1,0 @@
-[book]
-authors = ["panyu101"]
-language = "en"
-multilingual = false
-src = "src"
-title = "AP's Readings"
-
-[output.html]
-git-repository-url = "https://github.com/panyu101/panyu101.github.io"
