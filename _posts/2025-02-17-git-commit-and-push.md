@@ -5,7 +5,7 @@ date: 2025-02-17 20:50:00
 description: git commit and push with random message tag
 tags: apan tech
 categories: git
-featured: false
+featured: true
 ---
 
 ```bash
