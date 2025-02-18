@@ -1,7 +1,9 @@
 github_users:
   - panyu101
+  - ox0
 
 repo_description_lines_max: 2
 
 github_repos:
   - panyu101/panyu101.github.io
+  - ox0/ox0.github.io
