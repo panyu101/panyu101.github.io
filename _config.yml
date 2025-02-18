@@ -178,6 +178,7 @@ exclude:
   - _pages/projects.md
   - _pages/cv.md
   - _pages/teaching.md
+  - _pages/profiles.md
   - _pages/about_einstein.md
   - bin/
   - CONTRIBUTING.md
