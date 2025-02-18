@@ -1,16 +1,8 @@
 github_users:
-  - panyu101
   - torvalds
-  - alshedivat
+  - panyu101
 
 repo_description_lines_max: 2
 
 github_repos:
   - panyu101/panyu101.github.io
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
