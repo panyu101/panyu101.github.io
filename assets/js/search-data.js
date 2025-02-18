@@ -86,18 +86,7 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-apan-test",
-      
-        title: "apan test",
-      
-      description: "apan test",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/apan-test/";
-        
-      },
-    },{id: "post-a-post-with-image-galleries",
+            },{id: "post-a-post-with-image-galleries",
       
         title: "a post with image galleries",
       
@@ -414,6 +403,17 @@ ninja.data = [{
       handler: () => {
         
           window.location.href = "/blog/2015/math/";
+        
+      },
+    },{id: "post-a-post-with-code",
+      
+        title: "a post with code",
+      
+      description: "an example of a blog post with some code",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2015/apan-test/";
         
       },
     },{id: "post-a-post-with-code",
