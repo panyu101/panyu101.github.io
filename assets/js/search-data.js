@@ -30,7 +30,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-market",
+            },{id: "post-customize-post-template",
+      
+        title: "customize post template",
+      
+      description: "customize post template to remove these no need",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/customize-post-template/";
+        
+      },
+    },{id: "post-market",
       
         title: "market",
       
