@@ -14,7 +14,6 @@ https://github.com/panyu101/panyu101.github.io/blob/main/_layouts/post.liquid
 
 Cut AFTER "  </article>" and BEFORE "</div>"from file: _layouts/post.liquid to remove these links and info AFTER normal POST.
 
-```markdown
 These are the lines removed from the original file:
 
 ```liquid
@@ -41,5 +40,4 @@ These are the lines removed from the original file:
 {% if site.giscus and page.giscus_comments %}
   {% include giscus.liquid %}
 {% endif %}
-```
 ```
