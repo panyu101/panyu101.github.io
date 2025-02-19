@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: distill
 title: customize post template
 date: 2025-02-19 09:00:00
 description: customize post template to remove these no need
