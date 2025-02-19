@@ -30,7 +30,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-git-commit-and-push-with-random-message-tag",
+            },{id: "post-test",
+      
+        title: "test",
+      
+      description: "test",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/test/";
+        
+      },
+    },{id: "post-git-commit-and-push-with-random-message-tag",
       
         title: "git commit and push with random message tag",
       
