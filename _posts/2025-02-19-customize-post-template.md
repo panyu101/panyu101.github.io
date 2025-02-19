@@ -1,5 +1,5 @@
 ---
-layout: distill
+layout: post
 title: customize post template
 date: 2025-02-19 09:00:00
 description: customize post template to remove these no need
@@ -16,7 +16,7 @@ Cut AFTER "  </article>" and BEFORE "</div>"from file: _layouts/post.liquid to r
 
 These are the lines removed from the original file:
 
-```liquid
+```bash
 {% if page.citation %}
   {% include citation.liquid %}
 {% endif %}
