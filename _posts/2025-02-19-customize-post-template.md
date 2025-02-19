@@ -15,7 +15,7 @@ https://github.com/panyu101/panyu101.github.io/blob/main/_layouts/post.liquid
 Cut AFTER "  </article>" and BEFORE "</div>"from file: _layouts/post.liquid to remove these links and info AFTER normal POST.
 
 These are the lines removed from the original file:
-
+````
 ```html
 
   {% if page.citation %}
@@ -43,3 +43,4 @@ These are the lines removed from the original file:
   {% endif %}
 
 ```
+````
