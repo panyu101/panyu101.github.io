@@ -30,15 +30,15 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-test",
+            },{id: "post-market",
       
-        title: "test",
+        title: "market",
       
-      description: "test",
+      description: "market since end of 2024",
       section: "Posts",
       handler: () => {
         
-          window.location.href = "/blog/2025/test/";
+          window.location.href = "/blog/2025/market/";
         
       },
     },{id: "post-git-commit-and-push-with-random-message-tag",
