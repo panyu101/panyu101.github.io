@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-02-19T17:18:01+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">customize post template</title><link href="https://panyu101.github.io/blog/2025/customize-post-template/" rel="alternate" type="text/html" title="customize post template"/><published>2025-02-19T09:00:00+00:00</published><updated>2025-02-19T09:00:00+00:00</updated><id>https://panyu101.github.io/blog/2025/customize-post-template</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/customize-post-template/"><![CDATA[<p>To customize post template, this file needs to be modified:</p> <p>https://github.com/panyu101/panyu101.github.io/blob/main/_layouts/post.liquid</p> <p>Cut AFTER “ &lt;/article&gt;” and BEFORE “&lt;/div&gt;“from file: _layouts/post.liquid to remove these links and info AFTER normal POST.</p> <p>These are the lines removed from the original file:</p> <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-02-19T17:25:17+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">customize post template</title><link href="https://panyu101.github.io/blog/2025/customize-post-template/" rel="alternate" type="text/html" title="customize post template"/><published>2025-02-19T09:00:00+00:00</published><updated>2025-02-19T09:00:00+00:00</updated><id>https://panyu101.github.io/blog/2025/customize-post-template</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/customize-post-template/"><![CDATA[<p>To customize post template, this file needs to be modified:</p> <p>https://github.com/panyu101/panyu101.github.io/blob/main/_layouts/post.liquid</p> <p>Cut AFTER “ &lt;/article&gt;” and BEFORE “&lt;/div&gt;“from file: _layouts/post.liquid to remove these links and info AFTER normal POST.</p> <p>These are the lines removed from the original file:</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```html
+
   
 
   
@@ -9,43 +10,43 @@
 
   
     
-    <span class="nt">&lt;br&gt;</span>
-    <span class="nt">&lt;hr&gt;</span>
-    <span class="nt">&lt;br&gt;</span>
-    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"list-disc pl-8"</span><span class="nt">&gt;&lt;/ul&gt;</span>
+    &lt;br&gt;
+    &lt;hr&gt;
+    &lt;br&gt;
+    &lt;ul class="list-disc pl-8"&gt;&lt;/ul&gt;
 
-    <span class="c">&lt;!-- Adds related posts to the end of an article --&gt;</span>
-    <span class="nt">&lt;h2</span> <span class="na">class=</span><span class="s">"text-3xl font-semibold mb-4 mt-12"</span><span class="nt">&gt;</span>Enjoy Reading This Article?<span class="nt">&lt;/h2&gt;</span>
-    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"mb-2"</span><span class="nt">&gt;</span>Here are some more articles you might like to read next:<span class="nt">&lt;/p&gt;</span>
+    &lt;!-- Adds related posts to the end of an article --&gt;
+    &lt;h2 class="text-3xl font-semibold mb-4 mt-12"&gt;Enjoy Reading This Article?&lt;/h2&gt;
+    &lt;p class="mb-2"&gt;Here are some more articles you might like to read next:&lt;/p&gt;
   
 
-  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"my-2"</span><span class="nt">&gt;</span>
+  &lt;li class="my-2"&gt;
     
-      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"text-pink-700 underline font-semibold hover:text-pink-800"</span> <span class="na">href=</span><span class="s">"https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">"1rem"</span> <span class="na">height=</span><span class="s">"1rem"</span> <span class="na">viewBox=</span><span class="s">"0 0 30 30"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">"M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9"</span> <span class="na">class=</span><span class="s">"icon_svg-stroke"</span> <span class="na">stroke=</span><span class="s">"#999"</span> <span class="na">stroke-width=</span><span class="s">"1.5"</span> <span class="na">fill=</span><span class="s">"none"</span> <span class="na">fill-rule=</span><span class="s">"evenodd"</span> <span class="na">stroke-linecap=</span><span class="s">"round"</span> <span class="na">stroke-linejoin=</span><span class="s">"round"</span><span class="nt">&gt;&lt;/path&gt;</span>
-      <span class="nt">&lt;/svg&gt;</span>
+      &lt;a class="text-pink-700 underline font-semibold hover:text-pink-800" href="https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/" target="_blank"&gt;Google Gemini updates: Flash 1.5, Gemma 2 and Project Astra&lt;/a&gt;
+      &lt;svg width="1rem" height="1rem" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
     
-  <span class="nt">&lt;/li&gt;</span>
-
-  
-
-  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"my-2"</span><span class="nt">&gt;</span>
-    
-      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"text-pink-700 underline font-semibold hover:text-pink-800"</span> <span class="na">href=</span><span class="s">"https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>Displaying External Posts on Your al-folio Blog<span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">"1rem"</span> <span class="na">height=</span><span class="s">"1rem"</span> <span class="na">viewBox=</span><span class="s">"0 0 30 30"</span> <span class="na">xmlns=</span><span class="s">"http://www.w3.org/2000/svg"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">"M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9"</span> <span class="na">class=</span><span class="s">"icon_svg-stroke"</span> <span class="na">stroke=</span><span class="s">"#999"</span> <span class="na">stroke-width=</span><span class="s">"1.5"</span> <span class="na">fill=</span><span class="s">"none"</span> <span class="na">fill-rule=</span><span class="s">"evenodd"</span> <span class="na">stroke-linecap=</span><span class="s">"round"</span> <span class="na">stroke-linejoin=</span><span class="s">"round"</span><span class="nt">&gt;&lt;/path&gt;</span>
-      <span class="nt">&lt;/svg&gt;</span>
-    
-  <span class="nt">&lt;/li&gt;</span>
+  &lt;/li&gt;
 
   
 
-  <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"my-2"</span><span class="nt">&gt;</span>
+  &lt;li class="my-2"&gt;
     
-      <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"text-pink-700 underline font-semibold hover:text-pink-800"</span> <span class="na">href=</span><span class="s">"/blog/2025/market/"</span><span class="nt">&gt;</span>market<span class="nt">&lt;/a&gt;</span>
+      &lt;a class="text-pink-700 underline font-semibold hover:text-pink-800" href="https://medium.com/@al-folio/displaying-external-posts-on-your-al-folio-blog-b60a1d241a0a?source=rss-17feae71c3c4------2" target="_blank"&gt;Displaying External Posts on Your al-folio Blog&lt;/a&gt;
+      &lt;svg width="1rem" height="1rem" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;/path&gt;
+      &lt;/svg&gt;
     
-  <span class="nt">&lt;/li&gt;</span>
+  &lt;/li&gt;
+
+  
+
+  &lt;li class="my-2"&gt;
+    
+      &lt;a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2025/market/"&gt;market&lt;/a&gt;
+    
+  &lt;/li&gt;
 
 
 
@@ -55,6 +56,7 @@
   
   
 
+```
 </code></pre></div></div>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[customize post template to remove these no need]]></summary></entry><entry><title type="html">market</title><link href="https://panyu101.github.io/blog/2025/market/" rel="alternate" type="text/html" title="market"/><published>2025-02-18T20:50:00+00:00</published><updated>2025-02-18T20:50:00+00:00</updated><id>https://panyu101.github.io/blog/2025/market</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/market/"><![CDATA[<p>The rendered bar chart illustrates market dollars (thousands) from 2024 to 2030:</p> <pre><code class="language-chartjs">{
   "type": "bar",
   "data": {
@@ -112,16 +114,16 @@ Content 2
 <span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
 
 <span class="cp">{%</span><span class="w"> </span><span class="nt">endtabs</span><span class="w"> </span><span class="cp">%}</span>
-</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="18d9c3a5-832e-4a2b-994d-27e7352a633a" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="18d9c3a5-832e-4a2b-994d-27e7352a633a" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="50edeff1-a2c8-44c0-afcc-8eac6e900156" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="50edeff1-a2c8-44c0-afcc-8eac6e900156" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
 </code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pputs</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
-</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="c6364bf8-fcfd-4c17-9b06-d66e8dd71cd0" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="c6364bf8-fcfd-4c17-9b06-d66e8dd71cd0" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
+</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="5d35a91f-5892-42de-90ce-187632bb95b6" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="5d35a91f-5892-42de-90ce-187632bb95b6" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s2">"</span><span class="s">whatsup"</span>
   <span class="pi">-</span> <span class="s2">"</span><span class="s">hi"</span>
 </code></pre></div></div> </li> <li> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"whatsup"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hi"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="d9115c57-03af-4874-82e8-a1a15e1197c5" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="d9115c57-03af-4874-82e8-a1a15e1197c5" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://panyu101.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://panyu101.github.io/blog/2024/typograms</id><content type="html" xml:base="https://panyu101.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
+</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="5b550fa4-fa29-415d-bc4b-ab69f0b7e94c" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="5b550fa4-fa29-415d-bc4b-ab69f0b7e94c" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://panyu101.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://panyu101.github.io/blog/2024/typograms</id><content type="html" xml:base="https://panyu101.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
 </span><span class="sb">+----+
 |    |---&gt; My first diagram!
 +----+</span>
