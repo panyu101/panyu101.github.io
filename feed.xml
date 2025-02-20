@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-02-20T17:38:21+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">sample page creation</title><link href="https://panyu101.github.io/blog/2025/sample-page-creation/" rel="alternate" type="text/html" title="sample page creation"/><published>2025-02-20T09:20:00+00:00</published><updated>2025-02-20T09:20:00+00:00</updated><id>https://panyu101.github.io/blog/2025/sample-page-creation</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/sample-page-creation/"><![CDATA[<p><strong>Step 1:</strong> Create a Data File</p> <p>First, create a YAML data file in the _data folder of your al-folio project. Name it sample.yml and add some simple data, like this:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># _data/sample.yml</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-02-20T18:16:57+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">sample page creation</title><link href="https://panyu101.github.io/blog/2025/sample-page-creation/" rel="alternate" type="text/html" title="sample page creation"/><published>2025-02-20T09:20:00+00:00</published><updated>2025-02-20T09:20:00+00:00</updated><id>https://panyu101.github.io/blog/2025/sample-page-creation</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/sample-page-creation/"><![CDATA[<p><strong>Step 1:</strong> Create a Data File</p> <p>First, create a YAML data file in the _data folder of your al-folio project. Name it sample.yml and add some simple data, like this:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># _data/sample.yml</span>
 
 greeting:
   title: <span class="s2">"Welcome to My Site!"</span>
@@ -7,28 +7,34 @@ greeting:
     - <span class="s2">"Item 1"</span>
     - <span class="s2">"Item 2"</span>
     - <span class="s2">"Item 3"</span>
-</code></pre></div></div> <p>This file defines a greeting object with a title, message, and a list of items.</p> <p><strong>Step 2:</strong> Create or Edit a Page to Display the Data</p> <p>Al-folio uses Jekyll, so we’ll create a new page or modify an existing one (e.g., index.md or a new _pages/sample.md) to display this data. Let’s create a new page for clarity.</p> <p>Create _pages/sample.md</p> <p>Add a new file in the _pages folder called sample.md with the following content:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">---</span>
+</code></pre></div></div> <p>This file defines a greeting object with a title, message, and a list of items.</p> <p><strong>Step 2:</strong> Create or Edit a Page to Display the Data</p> <p>Al-folio uses Jekyll, so we’ll create a new page or modify an existing one (e.g., index.md or a new _pages/sample.md) to display this data. Let’s create a new page for clarity.</p> <p>Create _pages/sample.md</p> <p>Add a new file in the _pages folder called sample.md with the following content:</p> <pre><code>
+
+---
 layout: page
 permalink: /sample/
 title: Sample Page
-nav: <span class="nb">true
-</span>nav_order: 1
-<span class="nt">---</span>
+nav: true
+nav_order: 1
+---
 
+{% if site.data.sample.greeting %}
+  <h1>{{ site.data.sample.greeting.title }}</h1>
+  <p>{{ site.data.sample.greeting.message }}</p>
+  <ul>
+    {% for item in site.data.sample.greeting.items %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 
-  &lt;h1&gt;Welcome to My Site!&lt;/h1&gt;
-  &lt;p&gt;This is a sample message from my data file.&lt;/p&gt;
-  &lt;ul&gt;
-    
-      &lt;li&gt;Item 1&lt;/li&gt;
-    
-      &lt;li&gt;Item 2&lt;/li&gt;
-    
-      &lt;li&gt;Item 3&lt;/li&gt;
-    
-  &lt;/ul&gt;
+</code></pre> <p><strong>Explanation:</strong></p> <p>layout: page uses al-folio’s page layout for a standard page structure.</p> <p>permalink sets the URL (e.g., /sample/).</p> <p>site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is how Jekyll exposes data files.</p> <pre><code>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[set up a sample page]]></summary></entry><entry><title type="html">market</title><link href="https://panyu101.github.io/blog/2025/market/" rel="alternate" type="text/html" title="market"/><published>2025-02-18T20:50:00+00:00</published><updated>2025-02-18T20:50:00+00:00</updated><id>https://panyu101.github.io/blog/2025/market</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/market/"><![CDATA[<p>The rendered bar chart illustrates market dollars (thousands) from 2024 to 2030:</p> <pre><code class="language-chartjs">{
+Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
+{{ site.data.mydata.greeting.title }} displays the title.
+{{ site.data.mydata.greeting.message }} displays the message.
+A for loop iterates over site.data.mydata.greeting.items to create a list.
+
+</code></pre> <p>You can also style the output using al-folio’s CSS classes (e.g., d-flex, p-2, etc.) or add custom CSS in assets/css/main.scss.</p>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[set up a sample page]]></summary></entry><entry><title type="html">market</title><link href="https://panyu101.github.io/blog/2025/market/" rel="alternate" type="text/html" title="market"/><published>2025-02-18T20:50:00+00:00</published><updated>2025-02-18T20:50:00+00:00</updated><id>https://panyu101.github.io/blog/2025/market</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/market/"><![CDATA[<p>The rendered bar chart illustrates market dollars (thousands) from 2024 to 2030:</p> <pre><code class="language-chartjs">{
   "type": "bar",
   "data": {
     "labels": ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
@@ -85,16 +91,16 @@ Content 2
 <span class="cp">{%</span><span class="w"> </span><span class="nt">endtab</span><span class="w"> </span><span class="cp">%}</span>
 
 <span class="cp">{%</span><span class="w"> </span><span class="nt">endtabs</span><span class="w"> </span><span class="cp">%}</span>
-</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="3485d39a-b968-452b-9663-8ea522b2020a" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="3485d39a-b968-452b-9663-8ea522b2020a" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
+</code></pre></div></div> <p>With this you can generate visualizations like:</p> <ul id="log" class="tab" data-tab="c611c710-745d-4589-9347-a84441672952" data-name="log"> <li class="active" id="log-php"> <a href="#">php </a> </li> <li id="log-js"> <a href="#">js </a> </li> <li id="log-ruby"> <a href="#">ruby </a> </li> </ul> <ul class="tab-content" id="c611c710-745d-4589-9347-a84441672952" data-name="log"> <li class="active"> <div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">var_dump</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span>
 </code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div></div> </li> <li> <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">pputs</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span>
-</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="40467f1b-94b7-444f-b3b6-5f425a84c4a4" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="40467f1b-94b7-444f-b3b6-5f425a84c4a4" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
+</code></pre></div></div> </li> </ul> <h2 id="another-example">Another example</h2> <ul id="data-struct" class="tab" data-tab="f01e3b28-294b-49f2-af6b-ebb65ac3610f" data-name="data-struct"> <li class="active" id="data-struct-yaml"> <a href="#">yaml </a> </li> <li id="data-struct-json"> <a href="#">json </a> </li> </ul> <ul class="tab-content" id="f01e3b28-294b-49f2-af6b-ebb65ac3610f" data-name="data-struct"> <li class="active"> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hello</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s2">"</span><span class="s">whatsup"</span>
   <span class="pi">-</span> <span class="s2">"</span><span class="s">hi"</span>
 </code></pre></div></div> </li> <li> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"hello"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"whatsup"</span><span class="p">,</span><span class="w"> </span><span class="s2">"hi"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="b1509cd6-7b92-4bdc-9239-6d881e25401d" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="b1509cd6-7b92-4bdc-9239-6d881e25401d" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://panyu101.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://panyu101.github.io/blog/2024/typograms</id><content type="html" xml:base="https://panyu101.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
+</span></code></pre></div></div> </li> </ul> <h2 id="tabs-for-something-else">Tabs for something else</h2> <ul id="something-else" class="tab" data-tab="94a93955-2bbf-4ad8-b733-acdd1413d4cf" data-name="something-else"> <li class="active" id="something-else-text"> <a href="#">text </a> </li> <li id="something-else-quote"> <a href="#">quote </a> </li> <li id="something-else-list"> <a href="#">list </a> </li> </ul> <ul class="tab-content" id="94a93955-2bbf-4ad8-b733-acdd1413d4cf" data-name="something-else"> <li class="active"> <p>Regular text</p> </li> <li> <blockquote> <p>A quote</p> </blockquote> </li> <li> <p>Hipster list</p> <ul> <li>brunch</li> <li>fixie</li> <li>raybans</li> <li>messenger bag</li> </ul> </li> </ul>]]></content><author><name></name></author><category term="sample-posts"/><category term="formatting"/><category term="code"/><summary type="html"><![CDATA[this is what included tabs in a post could look like]]></summary></entry><entry><title type="html">a post with typograms</title><link href="https://panyu101.github.io/blog/2024/typograms/" rel="alternate" type="text/html" title="a post with typograms"/><published>2024-04-29T23:36:10+00:00</published><updated>2024-04-29T23:36:10+00:00</updated><id>https://panyu101.github.io/blog/2024/typograms</id><content type="html" xml:base="https://panyu101.github.io/blog/2024/typograms/"><![CDATA[<p>This is an example post with some <a href="https://github.com/google/typograms/">typograms</a> code.</p> <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">```</span><span class="nl">typograms
 </span><span class="sb">+----+
 |    |---&gt; My first diagram!
 +----+</span>
