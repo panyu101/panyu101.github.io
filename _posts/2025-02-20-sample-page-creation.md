@@ -57,7 +57,7 @@ layout: page uses al-folio’s page layout for a standard page structure.
 permalink sets the URL (e.g., /sample/).
 
 site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is how Jekyll exposes data files.
-```liquid
+```code
 Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
 {{ site.data.mydata.greeting.title }} displays the title.
 {{ site.data.mydata.greeting.message }} displays the message.
