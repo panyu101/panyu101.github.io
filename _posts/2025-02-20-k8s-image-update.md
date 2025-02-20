@@ -39,3 +39,8 @@ The set this image to the daemonset
 kubectl set image daemonset kube-proxy kube-proxy=602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.1-eksbuild.2 -n kube-system
 ```
 After set, you may run all check commands above to verify.
+
+**Extra:** Restart the daemon set
+```bash
+kubectl rollout restart daemonset kube-proxy -n kube-system
+```
