@@ -59,9 +59,9 @@ permalink sets the URL (e.g., /sample/).
 site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is how Jekyll exposes data files.
 
 Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
-
+```bash
 {{ site.data.mydata.greeting.title }} displays the title.
 {{ site.data.mydata.greeting.message }} displays the message.
-
+```
 A for loop iterates over site.data.mydata.greeting.items to create a list.
 
