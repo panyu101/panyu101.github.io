@@ -1,4 +1,4 @@
-# _data/sample.yml
+# _data/cc.yml
 
 tian-gan:
   title: "天干 (Ten Heavenly Stems)"
@@ -32,3 +32,19 @@ di-zhi:
     - "戌 - Xu"
     - "亥 - Hai"
 
+sheng-xiao:
+  title: "十二生肖 (Chinese Zodiac)"
+  message: "传统顺序排列的十二生肖，英文翻译可能会因文化语境略有变化，但以下是最常用的表达方式。"
+  items:
+    - "鼠 - Rat"
+    - "牛 - Ox"
+    - "虎 - Tiger"
+    - "兔 - Rabbit"
+    - "龙 - Dragon"
+    - "蛇 - Snake"
+    - "马 - Horse"
+    - "羊 - Goat (或 Sheep)"
+    - "猴 - Monkey"
+    - "鸡 - Rooster (或 Chicken)"
+    - "狗 - Dog"
+    - "猪 - Pig"
