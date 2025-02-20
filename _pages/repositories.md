@@ -40,8 +40,15 @@ nav_order: 4
 ## GitHub Repositories
 
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+
   {% for repo in site.data.repositories.github_repos %}
     {% include repository/repo.liquid repository=repo %}
   {% endfor %}
+
+  {% for bitbucket_repo in site.data.repositories.bitbucket_repos %}
+    {% include repository/repo.liquid repository=bitbucket_repo.name %}
+  {% endfor %}
+
+
 </div>
 {% endif %}
