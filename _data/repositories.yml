@@ -11,7 +11,10 @@ github_repos:
   - rat-ox/rat-ox.github.io
 
 # Add this new section for Bitbucket repos
+bitbucket_users:
+  - ox0ca
+
+repo_description_lines_max: 2
+
 bitbucket_repos:
-  - name: "ox0ca"
-    url: "https://bitbucket.org/ox0ca/ox0ca.bitbucket.io"
-    description: "ox0ca at Bitbucket"
+  - ox0ca/ox0ca.bitbucket.io
