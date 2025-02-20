@@ -32,8 +32,9 @@ Create _pages/sample.md
 
 Add a new file in the _pages folder called sample.md with the following content:
 
-<pre><code>
+```liquid
 {% raw %}
+
 ---
 layout: page
 permalink: /sample/
@@ -51,9 +52,9 @@ nav_order: 1
     {% endfor %}
   </ul>
 {% endif %}
-{% endraw %}
-</code></pre>
 
+{% endraw %}
+```
 **Explanation:**
 
 layout: page uses al-folio’s page layout for a standard page structure.
@@ -62,12 +63,14 @@ permalink sets the URL (e.g., /sample/).
 
 site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is how Jekyll exposes data files.
 
-<pre><code>
+```liquid
 {% raw %}
+
 Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
 {{ site.data.mydata.greeting.title }} displays the title.
 {{ site.data.mydata.greeting.message }} displays the message.
 A for loop iterates over site.data.mydata.greeting.items to create a list.
+
 {% endraw %}
-</code></pre>
+```
 You can also style the output using al-folio’s CSS classes (e.g., d-flex, p-2, etc.) or add custom CSS in assets/css/main.scss.
