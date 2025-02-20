@@ -67,9 +67,9 @@ site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is 
 {% raw %}
 
 Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
-{{ site.data.mydata.greeting.title }} displays the title.
-{{ site.data.mydata.greeting.message }} displays the message.
-A for loop iterates over site.data.mydata.greeting.items to create a list.
+{{ site.data.sample.greeting.title }} displays the title.
+{{ site.data.sample.greeting.message }} displays the message.
+A for loop iterates over site.data.sample.greeting.items to create a list.
 
 {% endraw %}
 ```
