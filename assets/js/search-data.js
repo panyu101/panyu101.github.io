@@ -9,12 +9,12 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-sample",
-          title: "Sample",
+  },{id: "nav-chinese-culture",
+          title: "Chinese Culture",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/sample/";
+            window.location.href = "/culture/";
           },
         },{id: "nav-blog",
           title: "blog",
