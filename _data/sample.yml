@@ -1,0 +1,9 @@
+# _data/sample.yml
+
+greeting:
+  title: "Welcome to My Site!"
+  message: "This is a sample message from my data file."
+  items:
+    - "Item 1"
+    - "Item 2"
+    - "Item 3"
