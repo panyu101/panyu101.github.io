@@ -38,7 +38,7 @@ Add a new file in the _pages folder called sample.md with the following content:
 ---
 layout: page
 permalink: /sample/
-title: Sample Page
+title: Sample
 nav: true
 nav_order: 1
 ---
