@@ -37,7 +37,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-market",
+            },{id: "post-sample-page-creation",
+      
+        title: "sample page creation",
+      
+      description: "set up a sample page",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/sample-page-creation/";
+        
+      },
+    },{id: "post-market",
       
         title: "market",
       
