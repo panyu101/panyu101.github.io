@@ -8,7 +8,7 @@
 
 
 <!-- Add Bitbucket repos -->
-{% for repo in site.data.repositories.bitbucket_repos %}
+{% for repo.name in site.data.repositories.bitbucket_repos %}
   <div class="repo">
     <a href="{{ repo.url }}">{{ repo.name }}</a>
     <p>{{ repo.description }}</p>
