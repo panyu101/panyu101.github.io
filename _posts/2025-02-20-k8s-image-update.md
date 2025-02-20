@@ -17,14 +17,14 @@ Check the current version at the EKS Cluster
 kubectl describe daemonset kube-proxy -n kube-system | gg Image
 ```
 You should see the output like this:
-> Image:      602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.2-eksbuild.3
+<code>Image:      602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.2-eksbuild.3</code>
 
 Or use this commandL
 ```bash
 kubectl get daemonset kube-proxy -n kube-system -o jsonpath='{.spec.template.spec.containers[?(@.name=="kube-proxy")].image}';echo
 ```
 And you should have output like this:
-> 602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.2-eksbuild.3
+<code>602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.2-eksbuild.3</code>
 
 Both outputs above, should be the same version.
 
@@ -32,7 +32,7 @@ Find out compatiable build with this command:
 ```bash
 aws eks describe-addon-versions --addon-name kube-proxy --kubernetes-version 1.31 --output text
 ```
-Say it is "v1.31.1-eksbuild.2"
+Say it is <code>v1.31.1-eksbuild.2</code>
 
 The set this image to the daemonset
 ```bash
