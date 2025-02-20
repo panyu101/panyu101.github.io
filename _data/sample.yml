@@ -2,7 +2,7 @@
 
 tian-gan:
   title: "天干 (Ten Heavenly Stems)"
-  message: "This palce has bit something from Chinese culture, enjoy!"
+  message: "天干通常用拼音表示，因为它们本身是中文字符，翻译成英文单词没有实际意义。"
   items:
     - "甲 - Jia"
     - "乙 - Yi"
@@ -14,3 +14,21 @@ tian-gan:
     - "辛 - Xin"
     - "壬 - Ren"
     - "癸 - Gui"
+
+di-zhi:
+  title: "地支 (Twelve Earthly Branches)"
+  message: "地支通常用拼音表示，因为它们本身是中文字符，翻译成英文单词没有实际意义。"
+  items:
+    - "子 - Zi"
+    - "丑 - Chou"
+    - "寅 - Yin"
+    - "卯 - Mao"
+    - "辰 - Chen"
+    - "巳 - Si"
+    - "午 - Wu"
+    - "未 - Wei"
+    - "申 - Shen"
+    - "酉 - You"
+    - "戌 - Xu"
+    - "亥 - Hai"
+
