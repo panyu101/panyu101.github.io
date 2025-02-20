@@ -9,3 +9,9 @@ github_repos:
   - panyu101/panyu101.github.io
   - ox0/ox0.github.io
   - rat-ox/rat-ox.github.io
+
+# Add this new section for Bitbucket repos
+bitbucket_repos:
+  - name: "ox0ca"
+    url: "https://bitbucket.org/ox0ca/ox0ca.bitbucket.io"
+    description: "ox0ca at Bitbucket"
