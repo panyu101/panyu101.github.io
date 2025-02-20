@@ -19,7 +19,7 @@ kubectl describe daemonset kube-proxy -n kube-system | gg Image
 You should see the output like this:
 <code>Image:      602401143452.dkr.ecr.us-east-1.amazonaws.com/eks/kube-proxy:v1.31.2-eksbuild.3</code>
 
-Or use this commandL
+Or use this command:
 ```bash
 kubectl get daemonset kube-proxy -n kube-system -o jsonpath='{.spec.template.spec.containers[?(@.name=="kube-proxy")].image}';echo
 ```
