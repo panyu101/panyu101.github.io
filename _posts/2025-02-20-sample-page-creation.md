@@ -34,7 +34,6 @@ Add a new file in the _pages folder called sample.md with the following content:
 
 ```liquid
 {% raw %}
-
 ---
 layout: page
 permalink: /sample/
@@ -52,7 +51,6 @@ nav_order: 1
     {% endfor %}
   </ul>
 {% endif %}
-
 {% endraw %}
 ```
 **Explanation:**
@@ -65,12 +63,10 @@ site.data.mydata.greeting accesses the data from _data/mydata.yml. site.data is 
 
 ```liquid
 {% raw %}
-
 Liquid templating ({% %} and {{ }}) is used to render the data dynamically:
 {{ site.data.sample.greeting.title }} displays the title.
 {{ site.data.sample.greeting.message }} displays the message.
 A for loop iterates over site.data.sample.greeting.items to create a list.
-
 {% endraw %}
 ```
 You can also style the output using al-folio’s CSS classes (e.g., d-flex, p-2, etc.) or add custom CSS in assets/css/main.scss.
