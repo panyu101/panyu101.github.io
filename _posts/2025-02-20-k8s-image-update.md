@@ -30,7 +30,7 @@ Both outputs above, should be the same version.
 
 Find out compatiable build with this command:
 ```bash
-THIS COMMAND IS LOST
+aws eks describe-addon-versions --addon-name kube-proxy --kubernetes-version 1.31 --output text
 ```
 Say it is "v1.31.1-eksbuild.2"
 
