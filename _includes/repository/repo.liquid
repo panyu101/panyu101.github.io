@@ -45,14 +45,19 @@
   </div>
 
 {% else %}
-  {% comment %} Bitbucket repository: use a simpler display {% endcomment %}
+  {% comment %} Bitbucket repository: use a styled display {% endcomment %}
   {% for bitbucket_repo in site.data.repositories.bitbucket_repos %}
     {% if bitbucket_repo.name == include.repository %}
       <div class="repo p-2 text-center">
-        <a href="{{ bitbucket_repo.url }}">{{ bitbucket_repo.name }}</a>
-        <p>{{ bitbucket_repo.description }}</p>
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="{{ bitbucket_repo.url }}" target="_blank">{{ bitbucket_repo.name }}</a>
+            </h5>
+            <p class="card-text">{{ bitbucket_repo.description }}</p>
+          </div>
+        </div>
       </div>
     {% endif %}
   {% endfor %}
 {% endif %}
-
