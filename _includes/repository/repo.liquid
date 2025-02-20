@@ -1,64 +1,47 @@
-{% assign repo_parts = include.repository | split: '/' %}
-
-{% if repo_parts.size == 2 and include.repository contains '/' %}
-  {% comment %} GitHub repository: use the original card logic {% endcomment %}
-  {% if site.data.repositories.github_users contains repo_parts.first %}
-    {% assign show_owner = false %}
-  {% else %}
-    {% assign show_owner = true %}
-  {% endif %}
-
-  {% assign lang = site.lang | split: '-' | first %}
-
-  {% case lang %}
-    {% when 'pt' %}
-      {% assign lang = site.lang %}
-    {% when 'zh' %}
-      {% assign lang_last = site.lang | split: '-' | last %}
-      {% case lang_last %}
-        {% when 'cn', 'sg', 'my', 'hans' %}
-          {% assign lang = 'cn' %}
-        {% when 'tw', 'hk', 'mo', 'hant' %}
-          {% assign lang = 'zh-tw' %}
-      {% endcase %}
-  {% endcase %}
-
-  {% if site.data.repositories.repo_description_lines_max %}
-    {% assign max_lines = site.data.repositories.repo_description_lines_max %}
-  {% else %}
-    {% assign max_lines = 2 %}
-  {% endif %}
-
-  <div class="repo p-2 text-center">
-    <a href="https://github.com/{{ include.repository }}">
-      <img
-        class="only-light w-100"
-        alt="{{ include.repository }}"
-        src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_parts[0] }}&repo={{ repo_parts[1] }}&theme={{ site.repo_theme_light }}&locale={{ lang }}&show_owner={{ show_owner }}&description_lines_count={{ max_lines }}"
-      >
-      <img
-        class="only-dark w-100"
-        alt="{{ include.repository }}"
-        src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_parts[0] }}&repo={{ repo_parts[1] }}&theme={{ site.repo_theme_dark }}&locale={{ lang }}&show_owner={{ show_owner }}&description_lines_count={{ max_lines }}"
-      >
-    </a>
-  </div>
-
+{% assign repo_url = include.repository | split: '/' %}
+{% if site.data.repositories.github_users contains repo_url.first %}
+  {% assign show_owner = false %}
 {% else %}
-  {% comment %} Bitbucket repository: use a styled card display {% endcomment %}
-  {% for bitbucket_repo in site.data.repositories.bitbucket_repos %}
-    {% if bitbucket_repo.name == include.repository %}
-      <div class="repo p-2 text-center">
-        <div class="card h-100" style="max-width: 300px; margin: auto;">
-          <div class="card-body">
-            <h5 class="card-title">
-              <a href="{{ bitbucket_repo.url }}" target="_blank" class="text-dark stretched-link">{{ bitbucket_repo.name }}</a>
-            </h5>
-            <p class="card-text">{{ bitbucket_repo.description }}</p>
-            <p class="text-muted small">Bitbucket Repository</p>
-          </div>
-        </div>
-      </div>
-    {% endif %}
-  {% endfor %}
+  {% assign show_owner = true %}
 {% endif %}
+
+{% assign lang = site.lang | split: '-' | first %}
+
+{% case lang %}
+  {% when 'pt' %}
+    {% assign lang = site.lang %}
+
+  {% when 'zh' %}
+    {% assign lang_last = site.lang | split: '-' | last %}
+    {% case lang_last %}
+      {% when 'cn', 'sg', 'my', 'hans' %}
+        {% assign lang = 'cn' %}
+      {% when 'tw', 'hk', 'mo', 'hant' %}
+        {% assign lang = 'zh-tw' %}
+    {% endcase %}
+
+    {% comment %} Add a new language using when... if needed {% endcomment %}
+    {% comment %} If you still encounter language-display issues, check the available locale codes in github-readme-stats (different from ISO-639 standard used in your website) {% endcomment %}
+    {% comment %} https://github.com/anuraghazra/github-readme-stats?tab=readme-ov-file#available-locales {% endcomment %}
+{% endcase %}
+
+{% if site.data.repositories.repo_description_lines_max %}
+  {% assign max_lines = site.data.repositories.repo_description_lines_max %}
+{% else %}
+  {% assign max_lines = 2 %}
+{% endif %}
+
+<div class="repo p-2 text-center">
+  <a href="https://github.com/{{ include.repository }}">
+    <img
+      class="only-light w-100"
+      alt="{{ include.repository }}"
+      src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_light }}&locale={{ lang }}&show_owner={{ show_owner }}&description_lines_count={{ max_lines }}"
+    >
+    <img
+      class="only-dark w-100"
+      alt="{{ include.repository }}"
+      src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url[0] }}&repo={{ repo_url[1] }}&theme={{ site.repo_theme_dark }}&locale={{ lang }}&show_owner={{ show_owner }}&description_lines_count={{ max_lines }}"
+    >
+  </a>
+</div>

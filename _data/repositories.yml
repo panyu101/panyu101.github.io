@@ -9,9 +9,3 @@ github_repos:
   - panyu101/panyu101.github.io
   - ox0/ox0.github.io
   - rat-ox/rat-ox.github.io
-
-bitbucket_repos:
-  - name: "ox0ca.bitbucket.io"
-    owner: "ox0ca"
-    url: "https://bitbucket.org/ox0ca/ox0ca.bitbucket.io"
-    description: "px0ca at Bitbucket."
