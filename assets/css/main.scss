@@ -23,3 +23,26 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+// Added this CSS ensures the Bitbucket cards having the same style as GitHub card
+.repo .card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff; /* Light theme */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: slight shadow like GitHub cards */
+}
+
+.only-dark .repo .card {
+  background-color: #333; /* Dark theme */
+  border-color: #555;
+  color: #fff;
+}
+
+.repo .card .card-title a {
+  color: #0366d6; /* GitHub link blue, adjust if needed */
+  text-decoration: none;
+}
+
+.repo .card .card-title a:hover {
+  text-decoration: underline;
+}
