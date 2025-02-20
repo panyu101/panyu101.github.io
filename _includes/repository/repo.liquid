@@ -5,18 +5,6 @@
   {% assign show_owner = true %}
 {% endif %}
 
-
-
-<!-- Add Bitbucket repos -->
-{% for repo.name in site.data.repositories.bitbucket_repos %}
-  <div class="repo">
-    <a href="{{ repo.url }}">{{ repo.name }}</a>
-    <p>{{ repo.description }}</p>
-  </div>
-{% endfor %}
-
-
-
 {% assign lang = site.lang | split: '-' | first %}
 
 {% case lang %}
