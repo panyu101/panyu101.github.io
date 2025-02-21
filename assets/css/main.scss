@@ -23,24 +23,3 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
-
-
-.image-tooltip .tooltip-inner {
-  background-color: #555; /* Matches your original tooltip background */
-  color: #fff; /* Text color (not used for images, but for consistency) */
-  max-width: 250px; /* Adjust as needed to fit the image */
-  padding: 5px; /* Optional padding around the image */
-  text-align: center; /* Center the image */
-  border-radius: 6px; /* Rounded corners like your original */
-}
-
-.image-tooltip .tooltip-inner img {
-  max-width: 100%; /* Ensure the image fits within the tooltip */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensures the image behaves as a block element */
-}
-
-.image-tooltip {
-  z-index: 1000; /* Ensure the tooltip appears above other elements */
-}
-
