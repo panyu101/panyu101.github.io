@@ -23,3 +23,17 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+
+.custom-tooltip .tooltip-inner {
+  background-color: #555;
+  color: #fff;
+  max-width: 200px;
+  padding: 5px;
+  text-align: center;
+}
+
+.custom-tooltip .tooltip-inner img {
+  max-width: 100%;
+  height: auto;
+}
