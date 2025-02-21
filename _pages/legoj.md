@@ -11,7 +11,6 @@ _styles: |
     display: inline-block;
     cursor: pointer;
   }
-
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 200px;
@@ -28,27 +27,43 @@ _styles: |
     opacity: 0;
     transition: opacity 0.3s;
   }
-
   .tooltip .tooltiptext img {
     max-width: 100%;
     height: auto;
     display: block;
   }
-
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
   }
 ---
 
-# Debugging Lego J Sets
-
-{% for set in site.data.legoj.lego_sets %}
-  <p>Set Number: {{ set.set_number | default: 'No set number' }}</p>
-  <p>Set Name: {{ set.set_name | default: 'No set name' }}</p>
-  <p>Purchase Date: {{ set.purchase_date | default: 'No purchase date' }}</p>
-  <p>Price: {{ set.price | default: 'No price' }}</p>
-  <p>Order: {{ set.order | default: 'No order' }}</p>
-  <p>Image: {{ set.image | default: 'No image' }}</p>
-  <hr>
-{% endfor %}
+<table>
+  <thead>
+    <tr>
+      <th>Set Number</th>
+      <th>Set Name</th>
+      <th>Purchase Date</th>
+      <th>Price</th>
+      <th>Order</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for set in site.data.legoj.lego_sets | sort: 'order' | reverse %}
+    <tr>
+      <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
+      <td>
+        <div class="tooltip">
+          {{ set.set_name }}
+          <span class="tooltiptext">
+            <img src="{{ set.image }}" alt="{{ set.set_name }}">
+          </span>
+        </div>
+      </td>
+      <td>{{ set.purchase_date }}</td>
+      <td>{{ set.price }}</td>
+      <td>{{ set.order }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
