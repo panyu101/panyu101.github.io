@@ -6,7 +6,6 @@ description: Lego J Sets Collection
 nav: true
 nav_order: 1
 ---
-
 <table>
   <thead>
     <tr>
