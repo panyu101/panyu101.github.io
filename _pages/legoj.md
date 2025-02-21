@@ -38,6 +38,7 @@ _styles: |
   }
 ---
 
+{% raw %}
 <table>
   <thead>
     <tr>
@@ -56,7 +57,7 @@ _styles: |
         <div class="tooltip">
           {{ set.set_name }}
           <span class="tooltiptext">
-            <img src="{{ set.image }}" alt="{{ set.set_name }}">
+            <img src="{{ site.baseurl }}{{ set.image }}" alt="{{ set.set_name }}">
           </span>
         </div>
       </td>
@@ -67,3 +68,4 @@ _styles: |
     {% endfor %}
   </tbody>
 </table>
+{% endraw %}
