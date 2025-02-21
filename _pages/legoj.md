@@ -21,12 +21,7 @@ nav_order: 1
     <tr>
       <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
       <td>
-        <div class="tooltip">
-          {{ set.set_name }}
-          <span class="tooltiptext">
-            <img src="{{ set.image }}" alt="{{ set.set_name }}">
-          </span>
-        </div>
+        <a href="#" data-bs-toggle="tooltip" data-bs-html="true" data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="<img src='{{ set.image }}' alt='{{ set.set_name }}' style='max-width: 200px;'>">{{ set.set_name }}</a>
       </td>
       <td>{{ set.purchase_date }}</td>
       <td>{{ set.price }}</td>
