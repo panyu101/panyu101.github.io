@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: distill
 permalink: /legoj/
 title: Lego J Set
 description: Lego J Sets Collection

@@ -19,3 +19,14 @@ openssl rand -base64 48 | tr -dc 'A-Za-z0-9' | fold -w 9 | head -n 1
 git add -A && git commit -a -m $(date +"%m-%d-%Y")_$(openssl rand -base64 48 | tr -dc 'A-Za-z0-9' | fold -w 9 | head -n 1) && git push
 
 ```
+**Version of skipping letter I and L in both case to reduce recognizing mistake**
+
+To get the random string:
+```bash
+openssl rand -base64 48 | tr -dc 'A-HJ-KM-Za-hj-km-z0-9'
+```
+
+To combine the git commit and git push command together:
+```bash
+git add -A && git commit -a -m $(date +"%m-%d-%Y")_$(openssl rand -base64 48 | tr -dc 'A-HJ-KM-Za-hj-km-z0-9' | fold -w 9 | head -n 1) && git push
+```
