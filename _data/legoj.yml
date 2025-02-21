@@ -6,7 +6,7 @@ lego_sets:
     price: "$12.99"
     order: 16
     url: "https://www.lego.com/"
-    image: "assets/legoj-image/mp-rocket.png"
+    image: "https://panyu101.github.io/assets/legoj-image/mp-rocket.png"
     
   - set_number: "31134"
     set_name: "Space Shuttle"
