@@ -1,7 +1,9 @@
 ---
 layout: page
-title: Lego J
 permalink: /legoj/
+title: Lego J Set
+nav: true
+nav_order: 1
 ---
 
 # Lego J Sets Collection
