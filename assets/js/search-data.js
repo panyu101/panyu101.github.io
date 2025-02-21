@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/legoj/";
           },
+        },{id: "nav-lego-j-set",
+          title: "Lego J Set",
+          description: "Lego J Sets Collection",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/legoj/";
+          },
         },{id: "nav-blog",
           title: "blog",
           description: "",
