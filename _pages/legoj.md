@@ -2,7 +2,7 @@
 layout: page
 permalink: /legoj/
 title: Lego J Set
-description: Lego J Sets Collection
+description: Lego Jie Sets Collection
 nav: true
 nav_order: 1
 _styles: |
