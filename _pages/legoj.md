@@ -28,7 +28,7 @@ _styles: |
     transition: opacity 0.3s;
   }
   .tooltip .tooltiptext img {
-    max-width: 100%;
+    max-width: 20%;
     height: auto;
     display: block;
   }
