@@ -21,7 +21,7 @@ _styles: |
     border-radius: 6px;
     position: absolute;
     z-index: 9999; /* Increased from 1000 */
-    top: -150px; /* Try positioning above the text instead of below */
+    top: 350px; /* Try positioning below the text instead of above */
     bottom: 125%;
     left: 50%;
     margin-left: -100px;
