@@ -38,7 +38,6 @@ _styles: |
   }
 ---
 
-{% raw %}
 <table>
   <thead>
     <tr>
@@ -68,4 +67,3 @@ _styles: |
     {% endfor %}
   </tbody>
 </table>
-{% endraw %}
