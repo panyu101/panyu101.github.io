@@ -5,7 +5,43 @@ title: Lego J Set
 description: Lego J Sets Collection
 nav: true
 nav_order: 1
+
+_styles: |
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1000;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip .tooltiptext img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 ---
+
 <table>
   <thead>
     <tr>
@@ -21,7 +57,12 @@ nav_order: 1
     <tr>
       <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
       <td>
-        <a href="#" data-bs-toggle="tooltip" data-bs-html="true" data-bs-custom-class="image-tooltip" data-bs-placement="top" title="<img src='{{ set.image }}' alt='{{ set.set_name }}' style='max-width: 200px; height: auto;'>">{{ set.set_name }}</a>
+        <div class="tooltip">
+          {{ set.set_name }}
+          <span class="tooltiptext">
+            <img src="{{ set.image }}" alt="{{ set.set_name }}">
+          </span>
+        </div>
       </td>
       <td>{{ set.purchase_date }}</td>
       <td>{{ set.price }}</td>
@@ -30,3 +71,4 @@ nav_order: 1
     {% endfor %}
   </tbody>
 </table>
+
