@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-lego-j-set",
           title: "Lego J Set",
-          description: "Lego J Sets Collection",
+          description: "Lego Jie Sets Collection",
           section: "Navigation",
           handler: () => {
             window.location.href = "/legoj/";
