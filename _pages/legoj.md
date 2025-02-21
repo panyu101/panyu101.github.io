@@ -20,7 +20,8 @@ _styles: |
     padding: 5px;
     border-radius: 6px;
     position: absolute;
-    z-index: 1000;
+    z-index: 9999; /* Increased from 1000 */
+    top: -150px; /* Try positioning above the text instead of below */
     bottom: 125%;
     left: 50%;
     margin-left: -100px;
@@ -33,8 +34,8 @@ _styles: |
     display: block;
   }
   .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 ---
 
