@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/culture/";
           },
+        },{id: "nav-lego-j-set",
+          title: "Lego J Set",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/legoj/";
+          },
         },{id: "nav-blog",
           title: "blog",
           description: "",
