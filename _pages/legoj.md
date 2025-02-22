@@ -6,6 +6,10 @@ description: Lego Jie Sets Collection
 nav: false
 #nav_order: 1
 _styles: >
+/* Reset everything */
+* {
+    all: unset;
+}
         body {
             display: flex;
             flex-direction: column;
