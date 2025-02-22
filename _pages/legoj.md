@@ -3,8 +3,8 @@ layout: page
 permalink: /legoj/
 title: LegoJ
 description: Lego Jie Sets Collection
-nav: true
-nav_order: 1
+nav: false
+#nav_order: 1
 ---
 <table>
   <thead>
