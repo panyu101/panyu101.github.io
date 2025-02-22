@@ -1,5 +1,5 @@
 ---
-layout: apan
+layout: page
 permalink: /legoj/
 title: LegoJ
 description: Lego Jie Sets Collection
