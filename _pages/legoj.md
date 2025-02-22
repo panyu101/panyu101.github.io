@@ -22,8 +22,8 @@ _styles: >
         }
         .tooltip .tooltiptext {
             visibility: hidden;
-            width: 50%;
-            max-width: 50%;
+            width: 20%;
+            max-width: 20%;
             background-color: #fff;
             color: #333;
             text-align: center;
@@ -39,7 +39,7 @@ _styles: >
             visibility: visible;
         }
         .tooltip img {
-            width: 70%;
+            width: 20%;
             height: auto;
         }
 ---
