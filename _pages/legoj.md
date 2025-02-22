@@ -38,8 +38,8 @@ _styles: >
         .tooltip:hover .tooltiptext {
             visibility: visible;
         }
-        .tooltip img {
-            width: 20%;
+        .tooltip-image {
+            width: 200px;
             height: auto;
         }
 ---
@@ -61,7 +61,7 @@ _styles: >
           <div class="tooltip">
               {{ set.set_name }}
               <div class="tooltiptext">
-                 <img src="{{ set.image }}" alt="{{ set.set_name }}">
+                 <img src="{{ set.image }}" alt="{{ set.set_name }}" class="tooltip-image">
               </div>
           </div>
       </td>
