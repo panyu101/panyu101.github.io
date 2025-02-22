@@ -1,29 +1,11 @@
 ---
-layout: distill
+layout: apan
 permalink: /legoj/
 title: LegoJ
 description: Lego Jie Sets Collection
 nav: false
 #nav_order: 1
 _styles: >
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(odd) {
-            background-color: #f0f8ff;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
         a {
             text-decoration: none;
             color: #333;
@@ -57,7 +39,7 @@ _styles: >
             visibility: visible;
         }
         .tooltip img {
-            width: 100%;
+            width: 70%;
             height: auto;
         }
 ---
