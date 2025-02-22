@@ -6,31 +6,6 @@ description: Lego Jie Sets Collection
 nav: false
 #nav_order: 1
 _styles: >
-/* Reset everything */
-* {
-    all: unset;
-}
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            height: 100vh;
-            overflow: auto;
-            background-color: #f0f8ff;
-            color: #333;
-        }
-        h1 {
-            font-size: 2em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
         table {
             width: 80%;
             border-collapse: collapse;
