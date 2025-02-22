@@ -16,13 +16,6 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/culture/";
           },
-        },{id: "nav-legoj",
-          title: "LegoJ",
-          description: "Lego Jie Sets Collection",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/legoj/";
-          },
         },{id: "nav-blog",
           title: "blog",
           description: "",
@@ -43,6 +36,13 @@ ninja.data = [{
               section: "Dropdown",
               handler: () => {
                 window.location.href = "/blog/";
+              },
+            },{id: "dropdown-legoj",
+              title: "LegoJ",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "";
               },
             },{id: "post-k8s-image-update",
       
