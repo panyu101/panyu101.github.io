@@ -1,10 +1,86 @@
 ---
-layout: page
+layout: apan
 permalink: /legoj/
 title: LegoJ
 description: Lego Jie Sets Collection
 nav: false
 #nav_order: 1
+_styles: >
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow: auto;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #f0f8ff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            color: #fff;
+            background-color: #33a;
+            padding: 0px;
+            border-radius: 0px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 50%;
+            max-width: 50%;
+            background-color: #fff;
+            color: #333;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: fixed;
+            z-index: 1;
+            top: 5%;
+            left: 50%;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+        .tooltip img {
+            width: 100%;
+            height: auto;
+        }
 ---
 <table>
   <thead>
@@ -20,7 +96,14 @@ nav: false
     {% for set in site.data.legoj.lego_sets | sort: 'order' | reverse %}
     <tr>
       <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
-      <td><a href="{{ set.image }}">{{ set.set_name }}</a></td>
+      <td>
+          <div class="tooltip">
+              {{ set.set_name }}
+              <div class="tooltiptext">
+                 <img src="{{ set.image }}" alt="{{ set.set_name }}">
+              </div>
+          </div>
+      </td>
       <td>{{ set.purchase_date }}</td>
       <td>{{ set.price }}</td>
       <td>{{ set.order }}</td>
