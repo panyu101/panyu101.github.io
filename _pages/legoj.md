@@ -12,6 +12,8 @@ nav: false
     position: relative;
     display: inline-block;
     cursor: pointer;
+    text-decoration: underline;
+    color: blue;
   }
 
   .tooltip .tooltip-image {
@@ -23,14 +25,17 @@ nav: false
     padding: 5px;
     position: absolute;
     z-index: 100;
-    top: 100%;
+    top: 120%; /* Adjusted to prevent overlap */
     left: 50%;
     transform: translateX(-50%);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
   }
 
   .tooltip:hover .tooltip-image {
     visibility: visible;
+    opacity: 1;
   }
 </style>
 
@@ -49,10 +54,10 @@ nav: false
     <tr>
       <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
       <td>
-        <div class="tooltip">
+        <span class="tooltip">
           {{ set.set_name }}
           <img src="{{ set.image }}" alt="{{ set.set_name }}" class="tooltip-image">
-        </div>
+        </span>
       </td>
       <td>{{ set.purchase_date }}</td>
       <td>{{ set.price }}</td>
