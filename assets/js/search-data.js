@@ -16,16 +16,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/culture/";
           },
-        },{id: "nav-lego-j-set",
-          title: "Lego J Set",
+        },{id: "nav-legoj",
+          title: "LegoJ",
           description: "Lego Jie Sets Collection",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/legoj/";
-          },
-        },{id: "nav-lego-j-set",
-          title: "Lego J Set",
-          description: "Lego J Sets Collection",
           section: "Navigation",
           handler: () => {
             window.location.href = "/legoj/";
