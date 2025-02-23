@@ -20,7 +20,7 @@ nav: false
     {% for set in site.data.legoj.lego_sets | sort: 'order' | reverse %}
     <tr>
       <td><a href="{{ set.url }}">{{ set.set_number }}</a></td>
-      <td><a href="{{ set.image }}">{{ set.set_name }}</a></td>
+      <td><a href="{{ set.image }}" target="_blank">{{ set.set_name }}</a></td>
       <td>{{ set.purchase_date }}</td>
       <td>{{ set.price }}</td>
       <td>{{ set.order }}</td>
