@@ -44,29 +44,7 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-k8s-image-update",
-      
-        title: "k8s image update",
-      
-      description: "Update k8s image",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/k8s-image-update/";
-        
-      },
-    },{id: "post-k8s-image-update",
-      
-        title: "k8s image update",
-      
-      description: "Update k8s image in AWS EKS",
-      section: "Posts",
-      handler: () => {
-        
-          window.location.href = "/blog/2025/k8s-image-update.md/";
-        
-      },
-    },{id: "post-sample-page-creation",
+            },{id: "post-sample-page-creation",
       
         title: "sample page creation",
       
