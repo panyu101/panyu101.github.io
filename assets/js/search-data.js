@@ -44,7 +44,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-k8s-image-update",
+            },{id: "post-use-envrc-in-awscli",
+      
+        title: "use envrc in awscli",
+      
+      description: "Sample of usage of envrc in awscli",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/use-envrc-in-awscli/";
+        
+      },
+    },{id: "post-k8s-image-update",
       
         title: "k8s image update",
       
