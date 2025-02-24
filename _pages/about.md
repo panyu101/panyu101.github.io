@@ -34,9 +34,8 @@ The world seems awaiting for another person like Albert Einstein long, one hundr
 
 The longer we await, the great Albert Einstein is.
 
-This site is cloned from:
+This site is cloned from: [Al-Folio](https://github.com/alshedivat/al-folio), Thanks to **alshedivat**!
 
-[Al-Folio](https://github.com/alshedivat/al-folio), Thanks to **alshedivat**!
 
 [Clock](https://ox0ca.bitbucket.io/) - ox0ca at Bitbucket
 
