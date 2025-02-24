@@ -2,8 +2,8 @@
 layout: page
 permalink: /culture/
 title: Chinese Culture
-nav: true
-nav_order: 1
+nav: false
+#nav_order: 1
 ---
 
 {% if site.data.cc.tian-gan %}

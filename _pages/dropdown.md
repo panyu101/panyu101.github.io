@@ -1,6 +1,6 @@
 ---
 layout: page
-title: submenus
+title: >>>
 nav: true
 nav_order: 8
 dropdown: true
@@ -15,4 +15,8 @@ children:
     permalink: /blog/
   - title: LegoJ
     permalink: /legoj/
+  - title: LegoX
+    permalink: /legox/
+  - title: Chinese Culture
+    permalink: /culture/
 ---
