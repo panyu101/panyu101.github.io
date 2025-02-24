@@ -9,14 +9,7 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-chinese-culture",
-          title: "Chinese Culture",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/culture/";
-          },
-        },{id: "nav-blog",
+  },{id: "nav-blog",
           title: "blog",
           description: "",
           section: "Navigation",
@@ -30,21 +23,7 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "dropdown-blog",
-              title: "blog",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/blog/";
-              },
-            },{id: "dropdown-legoj",
-              title: "LegoJ",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "";
-              },
-            },{id: "post-use-envrc-in-awscli",
+        },{id: "post-use-envrc-in-awscli",
       
         title: "use envrc in awscli",
       
