@@ -44,7 +44,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-git-account-setup-with-envrc",
+            },{id: "post-know-it-from-try",
+      
+        title: "know it from try",
+      
+      description: "know this Al-Folio framwork from trying",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/know-it-from-try/";
+        
+      },
+    },{id: "post-git-account-setup-with-envrc",
       
         title: "git account setup with .envrc",
       
