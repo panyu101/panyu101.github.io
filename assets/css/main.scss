@@ -23,3 +23,24 @@ $max-content-width: {{ site.max_width }};
   "tabler-icons/tabler-icons-filled.scss",
   "tabler-icons/tabler-icons-outline.scss"
 ;
+
+// for legoj.md to have image hover show
+.hover-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-image {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  max-width: 500px; /* Adjust size as needed */
+  top: 100%;
+  left: 0;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.hover-container:hover .hover-image {
+  display: block;
+}
