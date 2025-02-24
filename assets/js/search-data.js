@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-use-envrc-in-awscli",
+            },{id: "post-git-account-setup-with-envrc",
+      
+        title: "git account setup with .envrc",
+      
+      description: "git account setup with .envr and .ssh/config to avoid extra command typing",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/git-account-setup/";
+        
+      },
+    },{id: "post-use-envrc-in-awscli",
       
         title: "use envrc in awscli",
       
