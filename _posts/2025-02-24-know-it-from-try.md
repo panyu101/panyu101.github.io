@@ -9,6 +9,7 @@ featured: false
 ---
 
 **_config.yml file defines lots of variables, and can be used as site.VAR**
+
 For example, these two variables
 ```bash
 blog_name: Blog     # blog_name will be displayed in your blog page
