@@ -34,9 +34,9 @@ $max-content-width: {{ site.max_width }};
   display: none;
   position: absolute;
   z-index: 100;
-  max-width: 70%; /* Adjust size as needed 350px*/
+  max-width: 400px; /* Adjust size as needed 350px*/
   top: 100%;
-  left: 100%;
+  left: 200px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
