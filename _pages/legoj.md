@@ -4,6 +4,26 @@ permalink: /legoj/
 title: LegoJ
 description: Lego Jie Sets Collection
 nav: false
+_styles: >
+.hover-container {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-image {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  max-width: 120px; /* Adjust size as needed */
+  top: 100%;
+  left: 0;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.hover-container:hover .hover-image {
+  display: block;
+}
 ---
 <table>
   <thead>
