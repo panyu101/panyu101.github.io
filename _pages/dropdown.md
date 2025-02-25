@@ -19,4 +19,6 @@ children:
     permalink: /legox/
   - title: Chinese Culture
     permalink: /culture/
+  - title: 繁花-金宇澄
+    permalink: /FanHua/
 ---

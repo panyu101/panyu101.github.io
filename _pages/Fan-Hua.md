@@ -3,8 +3,8 @@ layout: distill
 permalink: /FanHua/
 title: 繁花
 description: 繁花 - 金宇澄
-nav: true
-nav_order: 1
+nav: false
+#nav_order: 1
 mermaid:
   enabled: true
   zoomable: true
