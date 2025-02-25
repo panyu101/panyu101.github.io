@@ -9,14 +9,7 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-繁花",
-          title: "繁花",
-          description: "繁花 - 金宇澄",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/FanHua/";
-          },
-        },{id: "nav-blog",
+  },{id: "nav-blog",
           title: "blog",
           description: "",
           section: "Navigation",
@@ -46,6 +39,13 @@ ninja.data = [{
               },
             },{id: "dropdown-chinese-culture",
               title: "Chinese Culture",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "";
+              },
+            },{id: "dropdown-繁花-金宇澄",
+              title: "繁花-金宇澄",
               description: "",
               section: "Dropdown",
               handler: () => {
