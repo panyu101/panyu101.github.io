@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-find-file-with-chinese-name",
+            },{id: "post-helm-cli-env",
+      
+        title: "helm cli env",
+      
+      description: "helm cli environment setup",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/helm-cli-env/";
+        
+      },
+    },{id: "post-find-file-with-chinese-name",
       
         title: "find file with Chinese name",
       
