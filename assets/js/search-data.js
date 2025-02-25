@@ -44,7 +44,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-know-it-from-try",
+            },{id: "post-find-file-with-chinese-name",
+      
+        title: "find file with Chinese name",
+      
+      description: "Search and find a file with Chinese filename",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/find-file-with-Chinese-name/";
+        
+      },
+    },{id: "post-know-it-from-try",
       
         title: "know it from try",
       
