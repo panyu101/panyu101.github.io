@@ -18,3 +18,4 @@ KUBECONFIG='/root/.kube/config.busi-eks-demo'
 echo $KUBECONFIG
 /root/.kube/config.busi-eks-demo
 ```
+You also need to source /opt/aws/EKS/busi-demo/.envrc, which has ALL EKS settings.
