@@ -28,13 +28,12 @@ latest_posts:
   limit: 0     # leave blank to include all the blog posts
 ---
 
-Albert Einstein is the real genius, I put him here for all my admiration.
-
-The world seems awaiting for another person like Albert Einstein long, one hundred year has passed.
-
+Albert Einstein is the real genius, I put him here for all my admiration.  
+The world seems awaiting for another person like Albert Einstein long, one hundred year has passed.  
 The longer we await, the great Albert Einstein is.
 
 This site is cloned from: [Al-Folio](https://github.com/alshedivat/al-folio), Thanks to **alshedivat**!
+
 
 
 **Extra sites**  
