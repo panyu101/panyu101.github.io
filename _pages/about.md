@@ -43,3 +43,8 @@ This site is cloned from: [Al-Folio](https://github.com/alshedivat/al-folio), Th
 
 [apox1](https://apox1.bitbucket.io/) - apox1 at Bitbucket
 
+
+**AI tools preferred**  
+[Grok 3](https://grok.com/)  
+[Chat GPT](https://chatgpt.com/)  
+[GitHub Copilot](https://github.com/copilot)  
