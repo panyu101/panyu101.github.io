@@ -21,4 +21,6 @@ children:
     permalink: /culture/
   - title: 繁花.金宇澄
     permalink: /FanHua/
+  - title: 爱弥儿.卢梭
+    permalink: /AiMiEr/
 ---
