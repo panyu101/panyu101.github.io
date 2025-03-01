@@ -45,7 +45,7 @@ ninja.data = [{
                 window.location.href = "";
               },
             },{id: "dropdown-繁花-金宇澄",
-              title: "繁花-金宇澄",
+              title: "繁花.金宇澄",
               description: "",
               section: "Dropdown",
               handler: () => {
