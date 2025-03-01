@@ -51,6 +51,13 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
+            },{id: "dropdown-爱弥儿-卢梭",
+              title: "爱弥儿.卢梭",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "";
+              },
             },{id: "post-helm-cli-env",
       
         title: "helm cli env",
