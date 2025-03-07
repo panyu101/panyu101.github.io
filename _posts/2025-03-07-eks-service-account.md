@@ -9,7 +9,7 @@ featured: false
 ---
 When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.  
 The following is a sample of calling the module to set this service account called "ds-kafka-consumer" up.  It is usually in file: service-accounts.tf
-```code
+```terraform
 module "eks_serviceaccount_iam_prod" {
   providers = {
     kubernetes = kubernetes.kubernetes-prod
@@ -30,7 +30,7 @@ module "eks_serviceaccount_iam_prod" {
 }
 ```
 Later, this "ds-kafka-consumer" can be used somewhere like this (in deployment.yaml file):  
-```code
+```yaml
 processes:
   - command: ["python", "-u", "main.py"]
     cpuRequest: 2000m
