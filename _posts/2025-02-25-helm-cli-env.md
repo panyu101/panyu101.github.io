@@ -1,7 +1,7 @@
 ---
 layout: post
 title: helm cli env
-date: 2025-02-25 12:4:00
+date: 2025-02-25 12:40:00
 description: helm cli environment setup
 tags: apan tech
 categories: k8s
