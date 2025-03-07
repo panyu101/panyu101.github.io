@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-helm-cli-env",
+            },{id: "post-eks-service-account",
+      
+        title: "EKS service account",
+      
+      description: "EKS service account",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/eks-service-account/";
+        
+      },
+    },{id: "post-helm-cli-env",
       
         title: "helm cli env",
       
