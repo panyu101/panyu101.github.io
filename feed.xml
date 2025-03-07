@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-07T21:03:36+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">EKS service account</title><link href="https://panyu101.github.io/blog/2025/eks-service-account/" rel="alternate" type="text/html" title="EKS service account"/><published>2025-03-07T12:55:00+00:00</published><updated>2025-03-07T12:55:00+00:00</updated><id>https://panyu101.github.io/blog/2025/eks-service-account</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/eks-service-account/"><![CDATA[<p>When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.<br/> The following is a sample of calling the module to set this service account called “ds-kafka-consumer” up. It is usually in file: service-accounts.tf</p> <pre><code class="language-code">module "eks_serviceaccount_iam_prod" {
-  providers = {
-    kubernetes = kubernetes.kubernetes-prod
-  }
-  source  = "app.terraform.io/kantar-profiles/eks-serviceaccount-iam/aws"
-  version = "1.1.0"
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-07T23:17:32+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">EKS service account</title><link href="https://panyu101.github.io/blog/2025/eks-service-account/" rel="alternate" type="text/html" title="EKS service account"/><published>2025-03-07T12:55:00+00:00</published><updated>2025-03-07T12:55:00+00:00</updated><id>https://panyu101.github.io/blog/2025/eks-service-account</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/eks-service-account/"><![CDATA[<p>When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.<br/> The following is a sample of calling the module to set this service account called “ds-kafka-consumer” up. It is usually in file: service-accounts.tf</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="s2">"eks_serviceaccount_iam_prod"</span> <span class="p">{</span>
+  <span class="nx">providers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">kubernetes</span> <span class="o">=</span> <span class="nx">kubernetes</span><span class="p">.</span><span class="nx">kubernetes-prod</span>
+  <span class="p">}</span>
+  <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"app.terraform.io/kantar-profiles/eks-serviceaccount-iam/aws"</span>
+  <span class="nx">version</span> <span class="o">=</span> <span class="s2">"1.1.0"</span>
 
-  cluster_name = module.qubed_eks_fargate_prod.cluster_name
-  region       = var.region
-  namespace    = "qubed"
+  <span class="nx">cluster_name</span> <span class="o">=</span> <span class="k">module</span><span class="p">.</span><span class="nx">qubed_eks_fargate_prod</span><span class="p">.</span><span class="nx">cluster_name</span>
+  <span class="nx">region</span>       <span class="o">=</span> <span class="kd">var</span><span class="p">.</span><span class="nx">region</span>
+  <span class="nx">namespace</span>    <span class="o">=</span> <span class="s2">"qubed"</span>
 
-  service_account_name = "ds-kafka-consumer"
-  role_name    = "ds-kafka-consumer-prod"
+  <span class="nx">service_account_name</span> <span class="o">=</span> <span class="s2">"ds-kafka-consumer"</span>
+  <span class="nx">role_name</span>    <span class="o">=</span> <span class="s2">"ds-kafka-consumer-prod"</span>
 
-  role_policy_arns = {
-    policy = aws_iam_policy.invoke_lambda.arn
-  }
-}
-</code></pre> <p>Later, this “ds-kafka-consumer” can be used somewhere like this (in deployment.yaml file):</p> <pre><code class="language-code">processes:
-  - command: ["python", "-u", "main.py"]
-    cpuRequest: 2000m
-    memoryRequest: 2096Mi
-    maxReplicas: 8
-    minReplicas: 2
-    targetCPUUtilizationPercentage: 60
-    targetMemoryUtilizationPercentage: 70        
-serviceAccountName: ds-kafka-consumer
-</code></pre> <p>The very <strong>last line</strong> uses the service account defined.</p>]]></content><author><name></name></author><category term="k8s"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[EKS service account]]></summary></entry><entry><title type="html">helm cli env</title><link href="https://panyu101.github.io/blog/2025/helm-cli-env/" rel="alternate" type="text/html" title="helm cli env"/><published>2025-02-25T12:40:00+00:00</published><updated>2025-02-25T12:40:00+00:00</updated><id>https://panyu101.github.io/blog/2025/helm-cli-env</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/helm-cli-env/"><![CDATA[<p>If needs to run helm cli based on current repo, make sure the correct EKS settings is in place</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$KUBECONFIG</span>
+  <span class="nx">role_policy_arns</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">policy</span> <span class="o">=</span> <span class="nx">aws_iam_policy</span><span class="p">.</span><span class="nx">invoke_lambda</span><span class="p">.</span><span class="nx">arn</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Later, this “ds-kafka-consumer” can be used somewhere like this (in deployment.yaml file):</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">processes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">python"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-u"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">main.py"</span><span class="pi">]</span>
+    <span class="na">cpuRequest</span><span class="pi">:</span> <span class="s">2000m</span>
+    <span class="na">memoryRequest</span><span class="pi">:</span> <span class="s">2096Mi</span>
+    <span class="na">maxReplicas</span><span class="pi">:</span> <span class="m">8</span>
+    <span class="na">minReplicas</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">targetCPUUtilizationPercentage</span><span class="pi">:</span> <span class="m">60</span>
+    <span class="na">targetMemoryUtilizationPercentage</span><span class="pi">:</span> <span class="s">70</span>        
+<span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">ds-kafka-consumer</span>
+</code></pre></div></div> <p>The very <strong>last line</strong> uses the service account defined.</p>]]></content><author><name></name></author><category term="k8s"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[EKS service account]]></summary></entry><entry><title type="html">helm cli env</title><link href="https://panyu101.github.io/blog/2025/helm-cli-env/" rel="alternate" type="text/html" title="helm cli env"/><published>2025-02-25T12:40:00+00:00</published><updated>2025-02-25T12:40:00+00:00</updated><id>https://panyu101.github.io/blog/2025/helm-cli-env</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/helm-cli-env/"><![CDATA[<p>If needs to run helm cli based on current repo, make sure the correct EKS settings is in place</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="nv">$KUBECONFIG</span>
 /root/.kube/config.qubed-eks-prod
 
 <span class="c"># otherwise, change it to the correct one:</span>
