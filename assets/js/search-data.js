@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-eks-service-account",
+            },{id: "post-alpine-package-info",
+      
+        title: "Alpine package info",
+      
+      description: "Alpine package info",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/alpine-package/";
+        
+      },
+    },{id: "post-eks-service-account",
       
         title: "EKS service account",
       
