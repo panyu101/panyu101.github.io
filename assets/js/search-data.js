@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-git-diff-output",
+            },{id: "post-my-favirate-bash-profile",
+      
+        title: "My favirate bash profile",
+      
+      description: "My favirate bash profile",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/my-bash-profile/";
+        
+      },
+    },{id: "post-git-diff-output",
       
         title: "Git diff output",
       
