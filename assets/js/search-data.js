@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-alpine-package-info",
+            },{id: "post-git-diff-output",
+      
+        title: "Git diff output",
+      
+      description: "git diff output",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/git-diff-output/";
+        
+      },
+    },{id: "post-alpine-package-info",
       
         title: "Alpine package info",
       

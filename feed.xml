@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-08T16:02:07+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">Alpine package info</title><link href="https://panyu101.github.io/blog/2025/alpine-package/" rel="alternate" type="text/html" title="Alpine package info"/><published>2025-03-08T07:45:00+00:00</published><updated>2025-03-08T07:45:00+00:00</updated><id>https://panyu101.github.io/blog/2025/alpine-package</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/alpine-package/"><![CDATA[<p>Right after completion of Alpine installation, do this to save a default_packages.txt</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apk info <span class="o">&gt;</span> default_packages.txt
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-08T17:10:00+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">Git diff output</title><link href="https://panyu101.github.io/blog/2025/git-diff-output/" rel="alternate" type="text/html" title="Git diff output"/><published>2025-03-08T08:50:00+00:00</published><updated>2025-03-08T08:50:00+00:00</updated><id>https://panyu101.github.io/blog/2025/git-diff-output</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/git-diff-output/"><![CDATA[<p>git diff command output is vi style by default under Alpine Linux, but you can change this:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git diff
+
+git config <span class="nt">--global</span> <span class="nt">--get</span> core.pager
+git config <span class="nt">--global</span> core.pager <span class="s2">"more"</span>
+
+git diff
+</code></pre></div></div>]]></content><author><name></name></author><category term="git"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[git diff output]]></summary></entry><entry><title type="html">Alpine package info</title><link href="https://panyu101.github.io/blog/2025/alpine-package/" rel="alternate" type="text/html" title="Alpine package info"/><published>2025-03-08T07:45:00+00:00</published><updated>2025-03-08T07:45:00+00:00</updated><id>https://panyu101.github.io/blog/2025/alpine-package</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/alpine-package/"><![CDATA[<p>Right after completion of Alpine installation, do this to save a default_packages.txt</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apk info <span class="o">&gt;</span> default_packages.txt
 </code></pre></div></div> <p>After that, you may use apk add to install any package.<br/> When you want to know what packages have been installed other than these installed by default, you can do:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apk info <span class="o">&gt;</span> installed_packages.txt
 </code></pre></div></div> <p>Then compare these two files:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>diff default_packages.txt installed_packages.txt
 </code></pre></div></div>]]></content><author><name></name></author><category term="alpine"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[Alpine package info]]></summary></entry><entry><title type="html">EKS service account</title><link href="https://panyu101.github.io/blog/2025/eks-service-account/" rel="alternate" type="text/html" title="EKS service account"/><published>2025-03-07T12:55:00+00:00</published><updated>2025-03-07T12:55:00+00:00</updated><id>https://panyu101.github.io/blog/2025/eks-service-account</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/eks-service-account/"><![CDATA[<p>When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.<br/> The following is a sample of calling the module to set this service account called “ds-kafka-consumer” up. It is usually in file: service-accounts.tf</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="s2">"eks_serviceaccount_iam_prod"</span> <span class="p">{</span>
@@ -150,26 +156,4 @@ Liquid templating (<span class="cp">{%</span><span class="w"> </span><span class
 <span class="cp">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">.</span><span class="nv">sample</span><span class="p">.</span><span class="nv">greeting</span><span class="p">.</span><span class="nv">message</span><span class="w"> </span><span class="cp">}}</span> displays the message.
 A for loop iterates over site.data.sample.greeting.items to create a list.
 
-</code></pre></div></div> <p>You can also style the output using al-folio’s CSS classes (e.g., d-flex, p-2, etc.) or add custom CSS in assets/css/main.scss.</p>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[set up a sample page]]></summary></entry><entry><title type="html">market</title><link href="https://panyu101.github.io/blog/2025/market/" rel="alternate" type="text/html" title="market"/><published>2025-02-18T20:50:00+00:00</published><updated>2025-02-18T20:50:00+00:00</updated><id>https://panyu101.github.io/blog/2025/market</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/market/"><![CDATA[<p>The rendered bar chart illustrates market dollars (thousands) from 2024 to 2030:</p> <pre><code class="language-chartjs">{
-  "type": "bar",
-  "data": {
-    "labels": ["2024", "2025", "2026", "2027", "2028", "2029", "2030"],
-    "datasets": [
-      {
-        "label": "Market dollars (thousands)",
-        "data": [462223, 462223, 462223, 462223, 462223, 462223, 462223],
-        "backgroundColor": "rgba(54, 162, 235, 0.6)",
-        "borderColor": "rgba(54, 162, 235, 1)",
-        "borderWidth": 1
-      }
-    ]
-  },
-  "options": {
-    "scales": {
-      "y": {
-        "beginAtZero": true
-      }
-    }
-  }
-}
-</code></pre>]]></content><author><name></name></author><category term="chart"/><category term="apan"/><category term="finance"/><summary type="html"><![CDATA[market since end of 2024]]></summary></entry></feed>
+</code></pre></div></div> <p>You can also style the output using al-folio’s CSS classes (e.g., d-flex, p-2, etc.) or add custom CSS in assets/css/main.scss.</p>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[set up a sample page]]></summary></entry></feed>
