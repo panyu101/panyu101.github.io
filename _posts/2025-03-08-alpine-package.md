@@ -20,5 +20,3 @@ Then compare these two files:
 ```bash
 diff default_packages.txt installed_packages.txt
 ```
-
-
