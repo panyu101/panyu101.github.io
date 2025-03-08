@@ -1,13 +1,13 @@
 ---
 layout: post
 title: My favirate bash profile
-date: 2025-03-08 09:30:00
+date: 2025-03-08 09:45:00
 description: My favirate bash profile
 tags: apan tech
 categories: bash
 featured: false
 ---
-My favirate bash profile
+My favirate bash profile:  
 ```bash
 # 99+
 
