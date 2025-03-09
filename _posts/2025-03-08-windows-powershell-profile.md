@@ -8,8 +8,9 @@ categories: windows
 featured: false
 ---
 Windows powershell profile locates at:  
->C:\Users\$USER\Documents\WindowsPowerShell
-
+```powershell
+C:\Users\$USER\Documents\WindowsPowerShell
+```
 Here is one example of this:  
 ```powershell
 # BEFORE run this ps1 script, you need to run this as administrator
@@ -33,5 +34,6 @@ If (Test-Path "${HistoryPath}\History.csv") {
     New-Item -Path $HistoryPath -ItemType Directory
 }
 Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {Get-History | Select-Object -Last 99999 | Export-Csv -Path "${HistoryPath}\History.csv"}
+
 ```
 The part of save command history can make powershell having Linux history like command, very useful.
