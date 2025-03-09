@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-my-favirate-bash-profile",
+            },{id: "post-windows-powershell-profile",
+      
+        title: "Windows powershell profile",
+      
+      description: "Windows powershell profile",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/windows-powershell-profile/";
+        
+      },
+    },{id: "post-my-favirate-bash-profile",
       
         title: "My favirate bash profile",
       
