@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-windows-powershell-profile",
+            },{id: "post-install-direnv-in-alpine",
+      
+        title: "Install direnv in Alpine",
+      
+      description: "Install direnv in Alpine",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/direnv/";
+        
+      },
+    },{id: "post-windows-powershell-profile",
       
         title: "Windows powershell profile",
       
