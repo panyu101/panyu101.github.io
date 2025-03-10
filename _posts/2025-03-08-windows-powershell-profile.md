@@ -11,6 +11,8 @@ Windows powershell profile locates at:
 ```powershell
 C:\Users\$USER\Documents\WindowsPowerShell
 ```
+The name of the file should be **Microsoft.PowerShell_profile.ps1**
+
 Here is one example of this:  
 ```powershell
 # BEFORE run this ps1 script, you need to run this as administrator
