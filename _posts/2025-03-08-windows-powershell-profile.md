@@ -19,11 +19,9 @@ Here is one example of this:
 # Set-ExecutionPolicy Unrestricted
 Set-PSReadLineKeyHandler -Chord Ctrl+l -Function ClearScreen
 #New-Alias -Name cc -Value 'code.cmd'
-New-Alias -Name ee -Value 'C:\Program Files (x86)\ACDSee32\ACDSee32.exe'
 New-Alias -Name ep -Value 'C:\Program Files\Just Great Software\EditPad Lite 8\EditPadLite8.exe'
 New-Alias -Name hh -Value Get-History
 New-Alias -Name ll -Value Get-ChildItem
-New-Alias -Name mm -Value 'C:\Program Files (x86)\AceMoney\AceMoney.exe'
 New-Alias -Name n2 -Value 'D:\ap\opt\notepad2\Notepad2.exe'
 New-Alias -Name nn -Value notepad.exe
 New-Alias -Name pp -Value 'C:\Program Files\PuTTY\putty.exe'
