@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-install-direnv-in-alpine",
+            },{id: "post-eks-service-account-setup",
+      
+        title: "EKS service account setup",
+      
+      description: "EKS service account setup",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/eks-serviceaccount-setup/";
+        
+      },
+    },{id: "post-install-direnv-in-alpine",
       
         title: "Install direnv in Alpine",
       

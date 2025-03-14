@@ -1,4 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-11T15:59:56+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">Install direnv in Alpine</title><link href="https://panyu101.github.io/blog/2025/direnv/" rel="alternate" type="text/html" title="Install direnv in Alpine"/><published>2025-03-10T08:15:00+00:00</published><updated>2025-03-10T08:15:00+00:00</updated><id>https://panyu101.github.io/blog/2025/direnv</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/direnv/"><![CDATA[<p>Small application, direnv, is very convenient. You can set it up, then add .envrc to each directory to save time to export required variables manually.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># install bash, since the default shell in Alpine is NOT bach</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-14T16:03:18+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">EKS service account setup</title><link href="https://panyu101.github.io/blog/2025/eks-serviceaccount-setup/" rel="alternate" type="text/html" title="EKS service account setup"/><published>2025-03-14T08:55:00+00:00</published><updated>2025-03-14T08:55:00+00:00</updated><id>https://panyu101.github.io/blog/2025/eks-serviceaccount-setup</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/eks-serviceaccount-setup/"><![CDATA[<p>When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.<br/> The following is a sample of calling the module to set this service account called “ds-graph” up. It is usually in file: service-accounts.tf</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="s2">"eks_serviceaccount_ds_graph"</span> <span class="p">{</span>
+  <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"app.terraform.io/kantar-profiles/eks-serviceaccount-iam/aws"</span>
+  <span class="nx">version</span> <span class="o">=</span> <span class="s2">"1.1.0"</span>
+
+  <span class="nx">cluster_name</span> <span class="o">=</span> <span class="kd">var</span><span class="p">.</span><span class="nx">cluster_name</span>
+  <span class="nx">region</span>       <span class="o">=</span> <span class="k">data</span><span class="p">.</span><span class="nx">aws_region</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">name</span>
+  <span class="nx">namespace</span>    <span class="o">=</span> <span class="s2">"qubed"</span>
+
+  <span class="nx">service_account_name</span> <span class="o">=</span> <span class="s2">"ds-graph"</span>
+  <span class="nx">role_name</span>    <span class="o">=</span> <span class="s2">"ds-graph-</span><span class="p">${</span><span class="kd">var</span><span class="p">.</span><span class="nx">environment</span><span class="p">}</span><span class="s2">"</span>
+
+  <span class="nx">role_policy_arns</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">neptune_full_access</span> <span class="o">=</span> <span class="s2">"arn:aws:iam::aws:policy/NeptuneFullAccess"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>Before</strong> you call the module, the provider should be added somewhere first, like this:</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">provider</span> <span class="s2">"kubernetes"</span> <span class="p">{</span>
+  <span class="nx">host</span>                   <span class="o">=</span> <span class="k">data</span><span class="p">.</span><span class="nx">aws_eks_cluster</span><span class="p">.</span><span class="nx">qubed</span><span class="p">.</span><span class="nx">endpoint</span>
+  <span class="nx">cluster_ca_certificate</span> <span class="o">=</span> <span class="nx">base64decode</span><span class="p">(</span><span class="k">data</span><span class="p">.</span><span class="nx">aws_eks_cluster</span><span class="p">.</span><span class="nx">qubed</span><span class="p">.</span><span class="nx">certificate_authority</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="k">data</span><span class="p">)</span>
+  <span class="nx">exec</span> <span class="p">{</span>
+    <span class="nx">api_version</span> <span class="o">=</span> <span class="s2">"client.authentication.k8s.io/v1beta1"</span>
+    <span class="nx">args</span>        <span class="o">=</span> <span class="p">[</span><span class="s2">"eks"</span><span class="p">,</span> <span class="s2">"get-token"</span><span class="p">,</span> <span class="s2">"--cluster-name"</span><span class="p">,</span> <span class="k">data</span><span class="p">.</span><span class="nx">aws_eks_cluster</span><span class="p">.</span><span class="nx">qubed</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+    <span class="nx">command</span>     <span class="o">=</span> <span class="s2">"aws"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div> <p><strong>Usage:</strong> the very <strong>last line</strong> uses the service account defined.</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span> <span class="s">...</span>
+<span class="na">processes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/home/myuser/.local/bin/gunicorn"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-w"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">4"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-b"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">0.0.0.0:3000"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">main:app"</span><span class="pi">]</span>
+    <span class="na">cpuRequest</span><span class="pi">:</span> <span class="s">1000m</span>
+    <span class="na">maxReplicas</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">minReplicas</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="na">targetCPUUtilizationPercentage</span><span class="pi">:</span> <span class="m">60</span>
+    <span class="na">targetMemoryUtilizationPercentage</span><span class="pi">:</span> <span class="s">70</span>       
+    <span class="na">envSpecific</span><span class="pi">:</span>
+      <span class="na">demo</span><span class="pi">:</span>
+        <span class="na">hostname</span><span class="pi">:</span> <span class="s">qubed-ds-graph.demo.qubed.ai</span>
+        <span class="na">memoryRequest</span><span class="pi">:</span> <span class="s">512Mi</span>
+      <span class="na">prod</span><span class="pi">:</span>
+        <span class="na">hostname</span><span class="pi">:</span> <span class="s">qubed-ds-graph.prod.qubed.ai</span>
+        <span class="na">memoryRequest</span><span class="pi">:</span> <span class="s">512Mi</span>
+<span class="na">serviceAccountName</span><span class="pi">:</span> <span class="s">ds-graph</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="k8s"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[EKS service account setup]]></summary></entry><entry><title type="html">Install direnv in Alpine</title><link href="https://panyu101.github.io/blog/2025/direnv/" rel="alternate" type="text/html" title="Install direnv in Alpine"/><published>2025-03-10T08:15:00+00:00</published><updated>2025-03-10T08:15:00+00:00</updated><id>https://panyu101.github.io/blog/2025/direnv</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/direnv/"><![CDATA[<p>Small application, direnv, is very convenient. You can set it up, then add .envrc to each directory to save time to export required variables manually.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># install bash, since the default shell in Alpine is NOT bach</span>
 apk add bash
 
 <span class="c"># change the user shell from sh to bash in /etc/passwd file</span>
@@ -110,62 +150,4 @@ blog_description: a simple whitespace theme <span class="k">for </span>academics
   &lt;/div&gt;
   <span class="cp">{%</span><span class="w"> </span><span class="nt">endif</span><span class="w"> </span><span class="cp">%}</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[know this Al-Folio framwork from trying]]></summary></entry><entry><title type="html">git account setup with .envrc</title><link href="https://panyu101.github.io/blog/2025/git-account-setup/" rel="alternate" type="text/html" title="git account setup with .envrc"/><published>2025-02-24T10:00:00+00:00</published><updated>2025-02-24T10:00:00+00:00</updated><id>https://panyu101.github.io/blog/2025/git-account-setup</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/git-account-setup/"><![CDATA[<p>When you have multiple Github/BitBucket accounts on the same computer, you may need to set up them this way to avoid swiching manually.</p> <p><strong>Config ssh</strong></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> ~/.ssh/config
-
-Host github-ox0
-    HostName github.com
-    User git
-    IdentityFile /opt/key/ox0.github.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host github-ratox
-    HostName github.com
-    User git
-    IdentityFile /opt/key/rat-ox.github.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host github-panyu101
-    HostName github.com
-    User git
-    IdentityFile /opt/key/panyu101.github.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host bitbucket-apox0
-    HostName bitbucket.org
-    User git
-    IdentityFile /opt/key/apox0.bitbucket.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host bitbucket-apox1
-    HostName bitbucket.org
-    User git
-    IdentityFile /opt/key/apox1.bitbucket.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host bitbucket-ox0ca
-    HostName bitbucket.org
-    User git
-    IdentityFile /opt/key/ox0ca.bitbucket.rsa
-    IdentitiesOnly <span class="nb">yes
-
-</span>Host <span class="k">*</span>
-    AddKeysToAgent <span class="nb">yes</span>
-</code></pre></div></div> <p><strong>Make directory the same name as the repo</strong> Add .envrc to each directory</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> .envrc
-
-<span class="c">#!/bin/bash</span>
-
-git config user.email <span class="s2">"FIRST.LAST@XXXX.XX"</span>
-git config user.name <span class="s2">"ox0"</span>
-</code></pre></div></div> <p><strong>Add this into .gitignore</strong></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.envrc
-</code></pre></div></div> <p><strong>Specify user/account when clone the repo</strong></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># instead of using normal SSH clone commond like this:</span>
-git clone git@github.com:panyu101/panyu101.github.io.git
-
-<span class="c"># Use this to specify the user/account</span>
-git clone git@github-panyu101:panyu101/panyu101.github.io.git
-</code></pre></div></div> <p><strong>Make sure the difference in two commond above!</strong></p> <p><strong>Verify the user/account</strong></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># git remote -v</span>
-origin  git@github-ox0:ox0/ox0.github.io.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  git@github-ox0:ox0/ox0.github.io.git <span class="o">(</span>push<span class="o">)</span>
-
-<span class="c"># ssh -T git@github-ox0</span>
-Hi ox0! You<span class="s1">'ve successfully authenticated, but GitHub does not provide shell access.
-</span></code></pre></div></div>]]></content><author><name></name></author><category term="git"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[git account setup with .envr and .ssh/config to avoid extra command typing]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="web"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[know this Al-Folio framwork from trying]]></summary></entry></feed>
