@@ -14,7 +14,7 @@ module "eks_serviceaccount_iam_prod" {
   providers = {
     kubernetes = kubernetes.kubernetes-prod
   }
-  source  = "app.terraform.io/kantar-profiles/eks-serviceaccount-iam/aws"
+  source  = "app.terraform.io/company-profiles/eks-serviceaccount-iam/aws"
   version = "1.1.0"
 
   cluster_name = module.qubed_eks_fargate_prod.cluster_name

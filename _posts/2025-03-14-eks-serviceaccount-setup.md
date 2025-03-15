@@ -11,7 +11,7 @@ When the pod running under AWS EKS, if it needs to use the resouce at AWS, then 
 The following is a sample of calling the module to set this service account called "ds-graph" up.  It is usually in file: service-accounts.tf  
 ```terraform
 module "eks_serviceaccount_ds_graph" {
-  source  = "app.terraform.io/kantar-profiles/eks-serviceaccount-iam/aws"
+  source  = "app.terraform.io/company-profiles/eks-serviceaccount-iam/aws"
   version = "1.1.0"
 
   cluster_name = var.cluster_name
