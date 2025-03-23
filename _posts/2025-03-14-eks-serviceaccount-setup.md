@@ -1,7 +1,7 @@
 ---
 layout: post
 title: EKS service account setup
-date: 2025-03-14 08:55:00
+date: 2025-03-22 20:35:00
 description: EKS service account setup
 tags: apan tech
 categories: k8s
