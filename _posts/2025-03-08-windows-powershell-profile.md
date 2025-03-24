@@ -36,4 +36,16 @@ If (Test-Path "${HistoryPath}\History.csv") {
 Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {Get-History | Select-Object -Last 99999 | Export-Csv -Path "${HistoryPath}\History.csv"}
 
 ```
-The part of save command history can make powershell having Linux history like command, very useful.
+The part of save command history can make powershell having Linux history like command, very useful.  
+You also need to make a directory **History** with **Microsoft.PowerShell_profile.ps1**, and a file **save_session_history.ps1**  
+```powershell
+#Save Command History
+$HistoryPath = 'C:\Users\apan\Documents\WindowsPowerShell\History'
+If (Test-Path "${HistoryPath}\History.csv") {
+    Import-Csv "${HistoryPath}\History.csv" | Add-History
+    }  ElseIf (!(Test-Path $HistoryPath))  {
+    New-Item -Path $HistoryPath -ItemType Directory
+}
+Register-EngineEvent -SourceIdentifier powershell.exiting -SupportEvent -Action {Get-History | Select-Object -Last 99999 | Export-Csv -Path "${HistoryPath}\History.csv"}
+
+```
