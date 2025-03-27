@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-eks-service-account-setup",
+            },{id: "post-generate-key-pair",
+      
+        title: "Generate key pair",
+      
+      description: "Generate key pair with one line command",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/generate-key-pair/";
+        
+      },
+    },{id: "post-eks-service-account-setup",
       
         title: "EKS service account setup",
       
