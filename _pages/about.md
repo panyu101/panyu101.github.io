@@ -45,3 +45,6 @@ This site is cloned from: [Al-Folio](https://github.com/alshedivat/al-folio), Th
 [Grok 3](https://grok.com/)  
 [Chat GPT](https://chatgpt.com/)  
 [GitHub Copilot](https://github.com/copilot)  
+
+**Notes**  
++ After new **categories** in a post, it should be added into this file, _config.yml, line "display_categories"

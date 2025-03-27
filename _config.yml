@@ -264,7 +264,7 @@ jekyll-archives:
     category: "/blog/category/:name/"
 
 display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
-display_categories: ["alpine", "aws", "bash", "chart", "git", "k8s", "linux", "web", "windows"] # these categories will be displayed on the front page of your blog
+display_categories: ["alpine", "aws", "bash", "chart", "git", "k8s", "linux", "terraform", "web", "windows"] # these categories will be displayed on the front page of your blog
 # use this command to get all categories in use:   
 # grep categories _posts/*|awk '{print $2}'|gg -v sample-posts|sort|uniq
 
