@@ -1,4 +1,139 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-27T16:32:12+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">Generate key pair</title><link href="https://panyu101.github.io/blog/2025/generate-key-pair/" rel="alternate" type="text/html" title="Generate key pair"/><published>2025-03-27T09:25:00+00:00</published><updated>2025-03-27T09:25:00+00:00</updated><id>https://panyu101.github.io/blog/2025/generate-key-pair</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/generate-key-pair/"><![CDATA[<p>Using the following <strong>one</strong> command to generate two files:<br/> <strong>ap-test-key</strong><br/> <strong>ap-test-key.pub</strong><br/> Both are in PEM format</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 2048 <span class="nt">-m</span> PEM <span class="nt">-f</span> ap-test-key <span class="nt">-N</span> <span class="s1">''</span>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://panyu101.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://panyu101.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2025-03-27T17:13:09+00:00</updated><id>https://panyu101.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. Thanks to bogoli </subtitle><entry><title type="html">AWS VPC subnet to EC2</title><link href="https://panyu101.github.io/blog/2025/vpc-subnet-ec2/" rel="alternate" type="text/html" title="AWS VPC subnet to EC2"/><published>2025-03-27T10:05:00+00:00</published><updated>2025-03-27T10:05:00+00:00</updated><id>https://panyu101.github.io/blog/2025/vpc-subnet-ec2</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/vpc-subnet-ec2/"><![CDATA[<p>One Terraform sample code here to generate everything from VPC to a Windows server.<br/> You need to generate key pair and provide pub key in the code.</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span>  <span class="o">=</span> <span class="s2">"REGION_NAME"</span>
+  <span class="nx">profile</span> <span class="o">=</span> <span class="s2">"PROFILE_NAME"</span>  <span class="c1"># Replace with your actual AWS profile name</span>
+<span class="p">}</span>
+
+<span class="k">data</span> <span class="s2">"aws_ami"</span> <span class="s2">"windows_2022"</span> <span class="p">{</span>
+  <span class="nx">most_recent</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">owners</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">"amazon"</span><span class="p">]</span>
+
+  <span class="nx">filter</span> <span class="p">{</span>
+    <span class="nx">name</span>   <span class="o">=</span> <span class="s2">"name"</span>
+    <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Windows_Server-2022-English-Full-Base-*"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">filter</span> <span class="p">{</span>
+    <span class="nx">name</span>   <span class="o">=</span> <span class="s2">"virtualization-type"</span>
+    <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"hvm"</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="nx">filter</span> <span class="p">{</span>
+    <span class="nx">name</span>   <span class="o">=</span> <span class="s2">"root-device-type"</span>
+    <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ebs"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_key_pair"</span> <span class="s2">"ap_test_key"</span> <span class="p">{</span>
+  <span class="nx">key_name</span>   <span class="o">=</span> <span class="s2">"KEY_NAME"</span>
+  <span class="nx">public_key</span> <span class="o">=</span> <span class="s2">"ssh-rsa AAAAB3NzaC1yc2E...your-public-key-here..."</span>  <span class="c1"># Replace with your actual public key</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_vpc"</span> <span class="s2">"ap_test_vpc"</span> <span class="p">{</span>
+  <span class="nx">cidr_block</span>           <span class="o">=</span> <span class="s2">"10.99.0.0/16"</span>
+  <span class="nx">enable_dns_hostnames</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">enable_dns_support</span>   <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_internet_gateway"</span> <span class="s2">"ap_test_igw"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">tags</span>   <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-igw"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table"</span> <span class="s2">"ap_test_rt"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span> <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">route</span> <span class="p">{</span>
+    <span class="nx">cidr_block</span> <span class="o">=</span> <span class="s2">"0.0.0.0/0"</span>
+    <span class="nx">gateway_id</span> <span class="o">=</span> <span class="nx">aws_internet_gateway</span><span class="p">.</span><span class="nx">ap_test_igw</span><span class="p">.</span><span class="nx">id</span>
+  <span class="p">}</span>
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-rt"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"ap_test_subnet_1"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span>                  <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">cidr_block</span>              <span class="o">=</span> <span class="s2">"10.99.1.0/24"</span>
+  <span class="nx">availability_zone</span>       <span class="o">=</span> <span class="s2">"cn-northwest-1a"</span>
+  <span class="nx">map_public_ip_on_launch</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">tags</span>                    <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-subnet-1"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_subnet"</span> <span class="s2">"ap_test_subnet_2"</span> <span class="p">{</span>
+  <span class="nx">vpc_id</span>                  <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">cidr_block</span>              <span class="o">=</span> <span class="s2">"10.99.2.0/24"</span>
+  <span class="nx">availability_zone</span>       <span class="o">=</span> <span class="s2">"cn-northwest-1b"</span>
+  <span class="nx">map_public_ip_on_launch</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">tags</span>                    <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-subnet-2"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"ap_test_rta_1"</span> <span class="p">{</span>
+  <span class="nx">subnet_id</span>      <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">ap_test_subnet_1</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">route_table_id</span> <span class="o">=</span> <span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">ap_test_rt</span><span class="p">.</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_route_table_association"</span> <span class="s2">"ap_test_rta_2"</span> <span class="p">{</span>
+  <span class="nx">subnet_id</span>      <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">ap_test_subnet_2</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">route_table_id</span> <span class="o">=</span> <span class="nx">aws_route_table</span><span class="p">.</span><span class="nx">ap_test_rt</span><span class="p">.</span><span class="nx">id</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_security_group"</span> <span class="s2">"ap_test_sg"</span> <span class="p">{</span>
+  <span class="nx">name</span>        <span class="o">=</span> <span class="s2">"ap-test-sg"</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Security group for Windows instance"</span>
+  <span class="nx">vpc_id</span>      <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">ingress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">3389</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">3389</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"tcp"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="nx">egress</span> <span class="p">{</span>
+    <span class="nx">from_port</span>   <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">to_port</span>     <span class="o">=</span> <span class="mi">0</span>
+    <span class="nx">protocol</span>    <span class="o">=</span> <span class="s2">"-1"</span>
+    <span class="nx">cidr_blocks</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"0.0.0.0/0"</span><span class="p">]</span>
+  <span class="p">}</span>
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-sg"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"ap_test_win"</span> <span class="p">{</span>
+  <span class="nx">ami</span>                         <span class="o">=</span> <span class="k">data</span><span class="p">.</span><span class="nx">aws_ami</span><span class="p">.</span><span class="nx">windows_2022</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">instance_type</span>               <span class="o">=</span> <span class="s2">"t3.xlarge"</span>
+  <span class="nx">subnet_id</span>                   <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">ap_test_subnet_1</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">vpc_security_group_ids</span>      <span class="o">=</span> <span class="p">[</span><span class="nx">aws_security_group</span><span class="p">.</span><span class="nx">ap_test_sg</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="nx">key_name</span>                    <span class="o">=</span> <span class="nx">aws_key_pair</span><span class="p">.</span><span class="nx">ap_test_key</span><span class="p">.</span><span class="nx">key_name</span>
+  <span class="nx">associate_public_ip_address</span> <span class="o">=</span> <span class="kc">true</span>
+  <span class="nx">root_block_device</span> <span class="p">{</span>
+    <span class="nx">volume_size</span> <span class="o">=</span> <span class="mi">199</span>
+    <span class="nx">volume_type</span> <span class="o">=</span> <span class="s2">"gp3"</span>
+  <span class="p">}</span>
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"ap-test-win"</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"windows_public_ip"</span> <span class="p">{</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_instance</span><span class="p">.</span><span class="nx">ap_test_win</span><span class="p">.</span><span class="nx">public_ip</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Public IP address of the Windows instance"</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"vpc_id"</span> <span class="p">{</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_vpc</span><span class="p">.</span><span class="nx">ap_test_vpc</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"VPC ID"</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"subnet_1_id"</span> <span class="p">{</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">ap_test_subnet_1</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Subnet 1 ID"</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"subnet_2_id"</span> <span class="p">{</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="nx">aws_subnet</span><span class="p">.</span><span class="nx">ap_test_subnet_2</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"Subnet 2 ID"</span>
+<span class="p">}</span>
+
+<span class="k">output</span> <span class="s2">"ami_id_used"</span> <span class="p">{</span>
+  <span class="nx">value</span>       <span class="o">=</span> <span class="k">data</span><span class="p">.</span><span class="nx">aws_ami</span><span class="p">.</span><span class="nx">windows_2022</span><span class="p">.</span><span class="nx">id</span>
+  <span class="nx">description</span> <span class="o">=</span> <span class="s2">"The AMI ID actually used for the Windows instance"</span>
+<span class="p">}</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><category term="terraform"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[AWS VPC subnet to EC2, one Terraform file]]></summary></entry><entry><title type="html">Generate key pair</title><link href="https://panyu101.github.io/blog/2025/generate-key-pair/" rel="alternate" type="text/html" title="Generate key pair"/><published>2025-03-27T09:25:00+00:00</published><updated>2025-03-27T09:25:00+00:00</updated><id>https://panyu101.github.io/blog/2025/generate-key-pair</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/generate-key-pair/"><![CDATA[<p>Using the following <strong>one</strong> command to generate two files:<br/> <strong>ap-test-key</strong><br/> <strong>ap-test-key.pub</strong><br/> Both are in PEM format</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen <span class="nt">-t</span> rsa <span class="nt">-b</span> 2048 <span class="nt">-m</span> PEM <span class="nt">-f</span> ap-test-key <span class="nt">-N</span> <span class="s1">''</span>
 </code></pre></div></div>]]></content><author><name></name></author><category term="bash"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[Generate key pair with one line command]]></summary></entry><entry><title type="html">EKS service account setup</title><link href="https://panyu101.github.io/blog/2025/eks-serviceaccount-setup/" rel="alternate" type="text/html" title="EKS service account setup"/><published>2025-03-22T21:45:00+00:00</published><updated>2025-03-22T21:45:00+00:00</updated><id>https://panyu101.github.io/blog/2025/eks-serviceaccount-setup</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/eks-serviceaccount-setup/"><![CDATA[<p>When the pod running under AWS EKS, if it needs to use the resouce at AWS, then the service account is required to set up.<br/> The following is a sample of calling the module to set this service account called “ds-graph” up. It is usually in file: service-accounts.tf</p> <div class="language-terraform highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="s2">"eks_serviceaccount_ds_graph"</span> <span class="p">{</span>
   <span class="nx">source</span>  <span class="o">=</span> <span class="s2">"app.terraform.io/company-profiles/eks-serviceaccount-iam/aws"</span>
   <span class="nx">version</span> <span class="o">=</span> <span class="s2">"1.1.0"</span>
@@ -145,8 +280,4 @@ git diff
 
 <span class="nb">echo</span> <span class="nv">$KUBECONFIG</span>
 /root/.kube/config.busi-eks-demo
-</code></pre></div></div> <p>You also need to source /opt/aws/EKS/busi-demo/.envrc, which has ALL EKS settings.</p>]]></content><author><name></name></author><category term="k8s"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[helm cli environment setup]]></summary></entry><entry><title type="html">find file with Chinese name</title><link href="https://panyu101.github.io/blog/2025/find-file-with-Chinese-name/" rel="alternate" type="text/html" title="find file with Chinese name"/><published>2025-02-24T16:00:00+00:00</published><updated>2025-02-24T16:00:00+00:00</updated><id>https://panyu101.github.io/blog/2025/find-file-with-Chinese-name</id><content type="html" xml:base="https://panyu101.github.io/blog/2025/find-file-with-Chinese-name/"><![CDATA[<p>This example shows how to use envrc in an aws cli to go through all directories to run the same aws cli:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find /var/www/html/Pan/ <span class="nt">-type</span> f | <span class="nb">grep</span> <span class="nt">--color</span><span class="o">=</span>auto <span class="nt">-P</span> <span class="s1">'[^\x00-\x7F]'</span>
-
-<span class="c"># or this one which also works under Alpine Linux</span>
-find /var/www/html/Pan/ <span class="nt">-type</span> f | <span class="nb">grep</span> <span class="nt">--color</span><span class="o">=</span>auto <span class="s1">'[^ -~]'</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="linux"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[Search and find a file with Chinese filename]]></summary></entry></feed>
+</code></pre></div></div> <p>You also need to source /opt/aws/EKS/busi-demo/.envrc, which has ALL EKS settings.</p>]]></content><author><name></name></author><category term="k8s"/><category term="apan"/><category term="tech"/><summary type="html"><![CDATA[helm cli environment setup]]></summary></entry></feed>

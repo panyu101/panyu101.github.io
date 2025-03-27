@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "";
               },
-            },{id: "post-generate-key-pair",
+            },{id: "post-aws-vpc-subnet-to-ec2",
+      
+        title: "AWS VPC subnet to EC2",
+      
+      description: "AWS VPC subnet to EC2, one Terraform file",
+      section: "Posts",
+      handler: () => {
+        
+          window.location.href = "/blog/2025/vpc-subnet-ec2/";
+        
+      },
+    },{id: "post-generate-key-pair",
       
         title: "Generate key pair",
       
